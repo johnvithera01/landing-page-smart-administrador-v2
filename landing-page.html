@@ -1,0 +1,4013 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Smart Administrator - Sistema completo de gestão empresarial. Controle vendas, estoque, clientes e finanças em um só lugar.">
+    <meta name="keywords" content="sistema de gestão, ERP, controle de vendas, gestão empresarial, controle de estoque">
+    <title>Smart Administrator | Sistema de Gestão Empresarial Completo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+/* ===== VARIABLES ===== */
+:root {
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --primary-light: #818cf8;
+    --secondary: #0ea5e9;
+    --accent: #f59e0b;
+    --success: #10b981;
+    --danger: #ef4444;
+    --dark: #1e293b;
+    --dark-light: #334155;
+    --gray: #64748b;
+    --gray-light: #94a3b8;
+    --light: #f1f5f9;
+    --white: #ffffff;
+    --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    --gradient-text: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --radius: 12px;
+    --radius-lg: 20px;
+    --transition: all 0.3s ease;
+}
+
+/* ===== RESET & BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--dark);
+    background: var(--white);
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--transition);
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--dark);
+}
+
+h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
+h2 { font-size: clamp(2rem, 4vw, 3rem); }
+h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
+
+.gradient-text {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: var(--radius);
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background: var(--gradient);
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
+}
+
+.btn-outline {
+    background: transparent;
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--dark);
+}
+
+.btn-ghost:hover {
+    background: var(--light);
+}
+
+.btn-white {
+    background: var(--white);
+    color: var(--primary);
+}
+
+.btn-white:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-outline-white {
+    background: transparent;
+    border-color: var(--white);
+    color: var(--white);
+}
+
+.btn-outline-white:hover {
+    background: var(--white);
+    color: var(--primary);
+}
+
+.btn-lg {
+    padding: 16px 32px;
+    font-size: 1.1rem;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+/* ===== URGENCY BAR ===== */
+.urgency-bar {
+    background: var(--gradient);
+    color: var(--white);
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.urgency-bar .countdown {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 2px 10px;
+    border-radius: 20px;
+    margin-left: 10px;
+    font-weight: 700;
+}
+
+/* ===== HEADER ===== */
+.header {
+    position: fixed;
+    top: 44px;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    color: var(--dark);
+}
+
+.logo i {
+    color: var(--primary);
+    font-size: 1.8rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 32px;
+}
+
+.nav-links a {
+    color: var(--gray);
+    font-weight: 500;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: var(--transition);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--dark);
+    cursor: pointer;
+}
+
+/* ===== HERO ===== */
+.hero {
+    padding: 180px 0 100px;
+    background: linear-gradient(180deg, var(--light) 0%, var(--white) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.badge {
+    display: inline-block;
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    font-size: 1.2rem;
+    color: var(--gray);
+    margin: 24px 0;
+    max-width: 540px;
+}
+
+.hero-stats {
+    display: flex;
+    gap: 40px;
+    margin: 32px 0;
+}
+
+.stat {
+    text-align: center;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+.hero-cta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.trust-badges {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+.trust-badges span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: var(--gray);
+}
+
+.trust-badges i {
+    color: var(--success);
+}
+
+/* Dashboard Preview */
+.hero-image {
+    position: relative;
+}
+
+.dashboard-preview {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
+    transition: var(--transition);
+}
+
+.dashboard-preview:hover {
+    transform: perspective(1000px) rotateY(0) rotateX(0);
+}
+
+.dashboard-header {
+    background: var(--dark);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.dots {
+    display: flex;
+    gap: 6px;
+}
+
+.dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--danger);
+}
+
+.dots span:nth-child(2) { background: var(--accent); }
+.dots span:nth-child(3) { background: var(--success); }
+
+.dashboard-title {
+    color: var(--gray-light);
+    font-size: 0.85rem;
+}
+
+.dashboard-content {
+    padding: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.mini-card {
+    background: var(--light);
+    padding: 16px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mini-card i {
+    width: 40px;
+    height: 40px;
+    background: var(--gradient);
+    color: var(--white);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mini-card span {
+    font-size: 0.8rem;
+    color: var(--gray);
+}
+
+.mini-card strong {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--dark);
+}
+
+.chart-placeholder {
+    grid-column: span 3;
+    height: 120px;
+    background: var(--light);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.chart-placeholder .bar {
+    width: 30px;
+    background: var(--gradient);
+    border-radius: 4px 4px 0 0;
+    animation: barGrow 1s ease-out forwards;
+}
+
+@keyframes barGrow {
+    from { height: 0; }
+}
+
+/* Floating Cards */
+.floating-card {
+    position: absolute;
+    background: var(--white);
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    animation: float 3s ease-in-out infinite;
+}
+
+.floating-card i {
+    font-size: 1.2rem;
+}
+
+.card-1 {
+    top: 20%;
+    right: -20px;
+    animation-delay: 0s;
+}
+
+.card-1 i { color: var(--success); }
+
+.card-2 {
+    bottom: 20%;
+    left: -20px;
+    animation-delay: 1.5s;
+}
+
+.card-2 i { color: var(--accent); }
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.hero-wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.hero-wave svg {
+    display: block;
+    width: 100%;
+}
+
+/* ===== LOGOS SECTION ===== */
+.logos-section {
+    padding: 60px 0;
+    background: var(--white);
+}
+
+.logos-title {
+    text-align: center;
+    color: var(--gray);
+    margin-bottom: 30px;
+    font-size: 0.95rem;
+}
+
+.logos-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    flex-wrap: wrap;
+}
+
+.logo-item {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--gray-light);
+    opacity: 0.6;
+    transition: var(--transition);
+}
+
+.logo-item:hover {
+    opacity: 1;
+    color: var(--primary);
+}
+
+/* ===== PROBLEM/SOLUTION ===== */
+.problem-section {
+    padding: 80px 0;
+    background: var(--light);
+}
+
+.problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.problem-card, .solution-card {
+    background: var(--white);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+}
+
+.problem-card {
+    border: 2px solid var(--danger);
+}
+
+.solution-card {
+    border: 2px solid var(--success);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(99, 102, 241, 0.05) 100%);
+}
+
+.problem-icon, .solution-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.problem-card h3, .solution-card h3 {
+    margin-bottom: 24px;
+}
+
+.problem-list li, .solution-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--light);
+}
+
+.problem-list li:last-child, .solution-list li:last-child {
+    border-bottom: none;
+}
+
+.problem-list i {
+    color: var(--danger);
+}
+
+.solution-list i {
+    color: var(--success);
+}
+
+/* ===== SECTION HEADER ===== */
+.section-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+}
+
+.section-badge {
+    display: inline-block;
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.section-header p {
+    color: var(--gray);
+    font-size: 1.1rem;
+    margin-top: 16px;
+}
+
+/* ===== BENEFITS ===== */
+.benefits-section {
+    padding: 100px 0;
+    background: var(--white);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.benefit-card {
+    background: var(--white);
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--light);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.benefit-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary);
+}
+
+.benefit-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.benefit-icon i {
+    font-size: 1.5rem;
+    color: var(--white);
+}
+
+.benefit-card h3 {
+    margin-bottom: 12px;
+}
+
+.benefit-card p {
+    color: var(--gray);
+    font-size: 0.95rem;
+}
+
+.benefit-stat {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 6px 12px;
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary);
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+/* ===== FEATURES ===== */
+.features-section {
+    padding: 100px 0;
+    background: var(--light);
+}
+
+.features-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: var(--white);
+    border: 2px solid transparent;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--gray);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.tab-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+}
+
+.tab-btn.active {
+    background: var(--gradient);
+    color: var(--white);
+}
+
+.feature-panel {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    background: var(--white);
+    padding: 60px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+}
+
+.feature-panel.active {
+    display: grid;
+}
+
+.feature-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+}
+
+.feature-info > p {
+    color: var(--gray);
+    margin-bottom: 24px;
+}
+
+.feature-list {
+    margin-bottom: 32px;
+}
+
+.feature-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    color: var(--dark);
+}
+
+.feature-list i {
+    color: var(--success);
+}
+
+.feature-mockup {
+    background: var(--gradient);
+    padding: 80px;
+    border-radius: var(--radius-lg);
+    text-align: center;
+    color: var(--white);
+}
+
+.feature-mockup i {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    display: block;
+}
+
+.feature-mockup span {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* ===== TESTIMONIALS ===== */
+.testimonials-section {
+    padding: 100px 0;
+    background: var(--white);
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 60px;
+}
+
+.testimonial-card {
+    background: var(--white);
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--light);
+    transition: var(--transition);
+}
+
+.testimonial-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.testimonial-card.featured {
+    background: var(--gradient);
+    color: var(--white);
+    border: none;
+    transform: scale(1.05);
+}
+
+.testimonial-rating {
+    margin-bottom: 16px;
+}
+
+.testimonial-rating i {
+    color: var(--accent);
+}
+
+.testimonial-card.featured .testimonial-rating i {
+    color: var(--white);
+}
+
+.testimonial-text {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 24px;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.author-avatar {
+    width: 48px;
+    height: 48px;
+    background: var(--gradient);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-weight: 700;
+}
+
+.testimonial-card.featured .author-avatar {
+    background: rgba(255,255,255,0.2);
+}
+
+.author-info strong {
+    display: block;
+}
+
+.author-info span {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.testimonials-stats {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    padding: 40px;
+    background: var(--light);
+    border-radius: var(--radius-lg);
+}
+
+.t-stat {
+    text-align: center;
+}
+
+.t-stat-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.t-stat-stars {
+    color: var(--accent);
+}
+
+.t-stat-label {
+    color: var(--gray);
+    font-size: 0.9rem;
+}
+
+/* ===== PRICING ===== */
+.pricing-section {
+    padding: 100px 0;
+    background: var(--light);
+}
+
+.pricing-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 50px;
+}
+
+.toggle-label {
+    font-weight: 500;
+    color: var(--gray);
+}
+
+.toggle-label.active {
+    color: var(--dark);
+}
+
+.toggle-switch {
+    position: relative;
+    width: 56px;
+    height: 28px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gray-light);
+    border-radius: 28px;
+    transition: var(--transition);
+}
+
+.toggle-slider::before {
+    content: '';
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background: var(--white);
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    background: var(--primary);
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+    transform: translateX(28px);
+}
+
+.discount-badge {
+    background: var(--success);
+    color: var(--white);
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 50px;
+}
+
+.pricing-card {
+    background: var(--white);
+    padding: 40px;
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--light);
+    transition: var(--transition);
+    position: relative;
+}
+
+.pricing-card:hover {
+    border-color: var(--primary);
+}
+
+.pricing-card.popular {
+    border-color: var(--primary);
+    transform: scale(1.05);
+    box-shadow: var(--shadow-lg);
+}
+
+.popular-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gradient);
+    color: var(--white);
+    padding: 6px 20px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.pricing-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.pricing-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.pricing-header p {
+    color: var(--gray);
+    font-size: 0.95rem;
+}
+
+.pricing-price {
+    text-align: center;
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--light);
+}
+
+.pricing-price .currency {
+    font-size: 1.5rem;
+    font-weight: 600;
+    vertical-align: top;
+}
+
+.pricing-price .amount {
+    font-size: 4rem;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1;
+}
+
+.pricing-price .period {
+    color: var(--gray);
+}
+
+.pricing-features {
+    margin-bottom: 32px;
+}
+
+.pricing-features li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+}
+
+.pricing-features i {
+    color: var(--success);
+}
+
+.pricing-features li.disabled {
+    color: var(--gray-light);
+}
+
+.pricing-features li.disabled i {
+    color: var(--gray-light);
+}
+
+.pricing-guarantee {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    padding: 24px;
+    background: rgba(16, 185, 129, 0.1);
+    border-radius: var(--radius);
+    text-align: left;
+}
+
+.pricing-guarantee i {
+    font-size: 2.5rem;
+    color: var(--success);
+}
+
+.pricing-guarantee strong {
+    display: block;
+    color: var(--dark);
+}
+
+.pricing-guarantee p {
+    color: var(--gray);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* ===== FAQ ===== */
+.faq-section {
+    padding: 100px 0;
+    background: var(--white);
+}
+
+.faq-grid {
+    max-width: 800px;
+    margin: 0 auto 50px;
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--light);
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    background: none;
+    border: none;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--dark);
+    cursor: pointer;
+    text-align: left;
+    transition: var(--transition);
+}
+
+.faq-question:hover {
+    color: var(--primary);
+}
+
+.faq-question i {
+    transition: var(--transition);
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+}
+
+.faq-answer p {
+    padding-bottom: 20px;
+    color: var(--gray);
+    line-height: 1.7;
+}
+
+.faq-cta {
+    text-align: center;
+}
+
+.faq-cta p {
+    color: var(--gray);
+    margin-bottom: 16px;
+}
+
+/* ===== FINAL CTA ===== */
+.final-cta {
+    padding: 100px 0;
+    background: var(--gradient);
+    text-align: center;
+}
+
+.cta-content h2 {
+    color: var(--white);
+    margin-bottom: 16px;
+}
+
+.cta-content > p {
+    color: rgba(255,255,255,0.9);
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto 32px;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.cta-note {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.9rem;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: var(--dark);
+    color: var(--gray-light);
+    padding: 80px 0 30px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 60px;
+}
+
+.footer-brand .logo {
+    color: var(--white);
+    margin-bottom: 16px;
+}
+
+.footer-brand p {
+    margin-bottom: 24px;
+    line-height: 1.7;
+}
+
+.social-links {
+    display: flex;
+    gap: 16px;
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    background: var(--dark-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray-light);
+    transition: var(--transition);
+}
+
+.social-links a:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.footer-links h4 {
+    color: var(--white);
+    margin-bottom: 20px;
+    font-size: 1rem;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+    border-top: 1px solid var(--dark-light);
+}
+
+.footer-legal {
+    display: flex;
+    gap: 24px;
+}
+
+.footer-legal a:hover {
+    color: var(--primary);
+}
+
+/* ===== CHATBOT ===== */
+.chatbot-container {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    z-index: 1001;
+}
+
+.chatbot-toggle {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient);
+    border: none;
+    border-radius: 50%;
+    color: var(--white);
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition);
+    position: relative;
+}
+
+.chatbot-toggle:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 90px;
+    width: 60px;
+    height: 60px;
+    background: #25D366;
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+    box-shadow: var(--shadow-lg);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    z-index: 999;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background: #128C7E;
+}
+
+.chatbot-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 22px;
+    height: 22px;
+    background: var(--danger);
+    border-radius: 50%;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chatbot-window {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 380px;
+    height: 500px;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.chatbot-window.active {
+    display: flex;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chatbot-header {
+    background: var(--gradient);
+    color: var(--white);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.chatbot-avatar {
+    width: 40px;
+    height: 40px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.chatbot-info {
+    flex: 1;
+}
+
+.chatbot-info strong {
+    display: block;
+}
+
+.online-status {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+.chatbot-close {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: var(--transition);
+}
+
+.chatbot-close:hover {
+    opacity: 1;
+}
+
+.chatbot-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.message {
+    display: flex;
+    gap: 10px;
+    max-width: 85%;
+}
+
+.message.bot {
+    align-self: flex-start;
+}
+
+.message.user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.message-content {
+    background: var(--light);
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    font-size: 0.95rem;
+}
+
+.message.user .message-content {
+    background: var(--gradient);
+    color: var(--white);
+}
+
+.message-content p {
+    margin-bottom: 8px;
+}
+
+.message-content p:last-child {
+    margin-bottom: 0;
+}
+
+.quick-replies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.quick-reply {
+    background: var(--white);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 8px 14px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.quick-reply:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+#whatsappButton {
+    background: #25D366 !important;
+    border-color: #25D366 !important;
+    color: white !important;
+    font-weight: 600 !important;
+}
+
+#whatsappButton:hover {
+    background: #128C7E !important;
+    border-color: #128C7E !important;
+}
+
+.chatbot-input {
+    display: flex;
+    gap: 10px;
+    padding: 16px 20px;
+    border-top: 1px solid var(--light);
+}
+
+.chatbot-input input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid var(--light);
+    border-radius: 50px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: var(--transition);
+}
+
+.chatbot-input input:focus {
+    border-color: var(--primary);
+}
+
+.chatbot-input button {
+    width: 44px;
+    height: 44px;
+    background: var(--gradient);
+    border: none;
+    border-radius: 50%;
+    color: var(--white);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.chatbot-input button:hover {
+    transform: scale(1.05);
+}
+
+/* ===== WHATSAPP FLOAT ===== */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 2rem;
+    box-shadow: var(--shadow-lg);
+    z-index: 1000;
+    transition: var(--transition);
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background: #128c7e;
+}
+
+/* ===== AI SECTION ===== */
+.ai-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    color: var(--white);
+}
+
+.ai-section .section-header h2 {
+    color: var(--white);
+}
+
+.ai-section .section-header p {
+    color: var(--gray-light);
+}
+
+.roi-calculator {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-lg);
+    padding: 40px;
+    margin-bottom: 60px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.roi-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.roi-header h3 {
+    color: var(--white);
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.roi-header p {
+    color: var(--gray-light);
+}
+
+.roi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.roi-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius);
+    padding: 30px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+    position: relative;
+}
+
+.roi-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.roi-card.featured {
+    background: var(--gradient);
+    border: none;
+    transform: scale(1.05);
+}
+
+.roi-card.featured:hover {
+    transform: scale(1.08);
+}
+
+.roi-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent);
+    color: var(--dark);
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.roi-icon {
+    width: 70px;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.roi-icon i {
+    font-size: 2rem;
+    color: var(--white);
+}
+
+.roi-card h4 {
+    color: var(--white);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.roi-card > p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.roi-result {
+    margin-bottom: 16px;
+}
+
+.roi-value {
+    display: block;
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--success);
+    line-height: 1;
+}
+
+.roi-card.featured .roi-value {
+    color: var(--white);
+}
+
+.roi-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.roi-money {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 12px;
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.roi-money i {
+    color: var(--accent);
+}
+
+.roi-money span {
+    font-size: 0.9rem;
+}
+
+.roi-total {
+    background: var(--gradient);
+    border-radius: var(--radius);
+    padding: 30px;
+}
+
+.roi-total-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.roi-total-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.roi-total-icon i {
+    font-size: 2.5rem;
+    color: var(--white);
+}
+
+.roi-total-info {
+    text-align: left;
+}
+
+.roi-total-label {
+    display: block;
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-bottom: 4px;
+}
+
+.roi-total-value {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--white);
+}
+
+.roi-total-note {
+    display: block;
+    font-size: 0.8rem;
+    opacity: 0.7;
+    margin-top: 4px;
+}
+
+.ai-features {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.ai-feature {
+    text-align: center;
+    padding: 30px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+}
+
+.ai-feature:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+}
+
+.ai-feature-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--gradient);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+}
+
+.ai-feature-icon i {
+    font-size: 1.5rem;
+    color: var(--white);
+}
+
+.ai-feature h4 {
+    color: var(--white);
+    margin-bottom: 8px;
+}
+
+.ai-feature p {
+    color: var(--gray-light);
+    font-size: 0.9rem;
+}
+
+/* ===== WHATSAPP MARKETING SECTION ===== */
+.whatsapp-section {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #075e54 0%, #128c7e 100%);
+    color: var(--white);
+}
+
+.whatsapp-section .section-header h2 {
+    color: var(--white);
+}
+
+.whatsapp-section .section-header p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.whatsapp-section .section-badge {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--white);
+}
+
+.whatsapp-showcase {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 80px;
+}
+
+.whatsapp-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: var(--white);
+}
+
+.whatsapp-features {
+    list-style: none;
+}
+
+.whatsapp-features li {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.whatsapp-features li i {
+    color: #25d366;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 4px;
+}
+
+.whatsapp-features li strong {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 1.1rem;
+}
+
+.whatsapp-features li p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.whatsapp-stats {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.ws-stat {
+    text-align: center;
+}
+
+.ws-stat-value {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #25d366;
+}
+
+.ws-stat-label {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.whatsapp-mockup {
+    position: relative;
+}
+
+.phone-frame {
+    background: #1e293b;
+    border-radius: 40px;
+    padding: 12px;
+    max-width: 320px;
+    margin: 0 auto;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+}
+
+.phone-notch {
+    width: 120px;
+    height: 25px;
+    background: #0f172a;
+    border-radius: 0 0 20px 20px;
+    margin: 0 auto 10px;
+}
+
+.phone-screen {
+    background: #ece5dd;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.wa-header {
+    background: #075e54;
+    color: white;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+}
+
+.wa-header i {
+    font-size: 1.5rem;
+}
+
+.wa-messages {
+    padding: 20px;
+    min-height: 300px;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4cfc4' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.wa-message {
+    max-width: 85%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    position: relative;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.wa-message.received {
+    background: white;
+    border-top-left-radius: 0;
+    color: #1e293b;
+}
+
+.wa-message.sent {
+    background: #dcf8c6;
+    border-top-right-radius: 0;
+    margin-left: auto;
+    color: #1e293b;
+}
+
+.wa-message p {
+    margin: 0 0 6px 0;
+}
+
+.wa-message p:last-of-type {
+    margin-bottom: 0;
+}
+
+.wa-time {
+    display: block;
+    text-align: right;
+    font-size: 0.7rem;
+    color: #667781;
+    margin-top: 4px;
+}
+
+.campaign-result {
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
+    background: var(--success);
+    color: white;
+    padding: 16px 24px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+    text-align: center;
+    animation: pulse 2s infinite;
+}
+
+.campaign-result i {
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 4px;
+}
+
+.campaign-result span {
+    display: block;
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.campaign-result strong {
+    display: block;
+    font-size: 1.1rem;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.campaign-types {
+    text-align: center;
+}
+
+.campaign-types h3 {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+    color: var(--white);
+}
+
+.campaign-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+}
+
+.campaign-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius);
+    padding: 24px 16px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+}
+
+.campaign-card:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.campaign-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+}
+
+.campaign-icon i {
+    font-size: 1.3rem;
+    color: var(--white);
+}
+
+.campaign-card h4 {
+    color: var(--white);
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.campaign-card p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+}
+
+.campaign-tag {
+    display: inline-block;
+    background: #25d366;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-text {
+        order: 1;
+    }
+
+    .hero-image {
+        order: 2;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .hero-stats {
+        justify-content: center;
+    }
+
+    .hero-cta {
+        justify-content: center;
+    }
+
+    .trust-badges {
+        justify-content: center;
+    }
+
+    .benefits-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .testimonial-card.featured {
+        transform: none;
+    }
+
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .pricing-card.popular {
+        transform: none;
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .roi-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .roi-card.featured {
+        transform: none;
+    }
+
+    .ai-features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .whatsapp-showcase {
+        grid-template-columns: 1fr;
+    }
+
+    .campaign-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links, .nav-buttons {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .hero {
+        padding: 140px 0 80px;
+    }
+
+    .problem-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-panel {
+        grid-template-columns: 1fr;
+        padding: 30px;
+    }
+
+    .feature-image {
+        order: -1;
+    }
+
+    .testimonials-stats {
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+
+    .chatbot-window {
+        width: calc(100vw - 40px);
+        right: -10px;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .ai-features {
+        grid-template-columns: 1fr;
+    }
+
+    .campaign-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .whatsapp-stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .roi-total-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .roi-total-info {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-stats {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .hero-cta {
+        flex-direction: column;
+    }
+
+    .features-tabs {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .tab-btn {
+        justify-content: center;
+    }
+}
+</style></head><body>
+    <!-- Barra de Urgência -->
+    <div class="urgency-bar">
+        <p>🔥 <strong>OFERTA LIMITADA:</strong> Ganhe 30 dias GRÁTIS + Implantação sem custo! <span class="countdown" id="countdown"></span></p>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav container">
+            <div class="logo">
+                <i class="fas fa-chart-line"></i>
+                <span>Smart<strong>Administrator</strong></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#beneficios">Benefícios</a></li>
+                <li><a href="#inteligencia-artificial">IA</a></li>
+                <li><a href="#whatsapp-marketing">WhatsApp</a></li>
+                <li><a href="#funcionalidades">Funcionalidades</a></li>
+                <li><a href="#planos">Planos</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="#demo" class="btn btn-outline">Ver Demo</a>
+                <a href="#planos" class="btn btn-primary">Começar Agora</a>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu de navegação">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content container">
+            <div class="hero-text">
+                <span class="badge">✨ Novo: Integração com PIX automático</span>
+                <h1>Transforme sua empresa com <span class="gradient-text">gestão inteligente</span></h1>
+                <p class="hero-description">O sistema completo que automatiza vendas, estoque, financeiro e muito mais. Economize até <strong>15 horas por semana</strong> e aumente seu faturamento em até <strong>40%</strong>.</p>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">2.500+</span>
+                        <span class="stat-label">Empresas ativas</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Satisfação</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Suporte</span>
+                    </div>
+                </div>
+
+                <div class="hero-cta">
+                    <a href="#planos" class="btn btn-primary btn-lg">
+                        <i class="fas fa-rocket"></i> Começar Teste Grátis
+                    </a>
+                    <a href="#demo" class="btn btn-ghost btn-lg">
+                        <i class="fas fa-play-circle"></i> Ver Demonstração
+                    </a>
+                </div>
+
+                <div class="trust-badges">
+                    <span><i class="fas fa-shield-alt"></i> Dados 100% seguros</span>
+                    <span><i class="fas fa-credit-card"></i> Sem cartão para testar</span>
+                    <span><i class="fas fa-times-circle"></i> Cancele quando quiser</span>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="dashboard-preview">
+                    <div class="dashboard-header">
+                        <div class="dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <span class="dashboard-title">Smart Administrator</span>
+                    </div>
+                    <div class="dashboard-content">
+                        <div class="mini-card">
+                            <i class="fas fa-dollar-sign"></i>
+                            <div>
+                                <span>Vendas Hoje</span>
+                                <strong>R$ 12.450,00</strong>
+                            </div>
+                        </div>
+                        <div class="mini-card">
+                            <i class="fas fa-box"></i>
+                            <div>
+                                <span>Produtos</span>
+                                <strong>1.234</strong>
+                            </div>
+                        </div>
+                        <div class="mini-card">
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <span>Clientes</span>
+                                <strong>856</strong>
+                            </div>
+                        </div>
+                        <div class="chart-placeholder">
+                            <div class="bar" style="height: 40%"></div>
+                            <div class="bar" style="height: 65%"></div>
+                            <div class="bar" style="height: 45%"></div>
+                            <div class="bar" style="height: 80%"></div>
+                            <div class="bar" style="height: 55%"></div>
+                            <div class="bar" style="height: 90%"></div>
+                            <div class="bar" style="height: 70%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="floating-card card-1">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Venda confirmada!</span>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-bell"></i>
+                    <span>Estoque baixo: Produto X</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-wave">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Logos de Empresas -->
+    <section class="logos-section">
+        <div class="container">
+            <p class="logos-title">Empresas que confiam no Smart Administrator</p>
+            <div class="logos-grid">
+                <div class="logo-item">Agroshopp</div>
+                <div class="logo-item">Pet Center</div>
+                <div class="logo-item">Auto Peças</div>
+                <div class="logo-item">Farmácia Plus</div>
+                <div class="logo-item">Mercado Bom</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problema/Solução -->
+    <section class="problem-section">
+        <div class="container">
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">😫</div>
+                    <h3>Sem o Smart Administrator</h3>
+                    <ul class="problem-list">
+                        <li><i class="fas fa-times"></i> Planilhas confusas e desatualizadas</li>
+                        <li><i class="fas fa-times"></i> Estoque descontrolado</li>
+                        <li><i class="fas fa-times"></i> Vendas perdidas por falta de informação</li>
+                        <li><i class="fas fa-times"></i> Horas gastas em tarefas manuais</li>
+                        <li><i class="fas fa-times"></i> Dificuldade em tomar decisões</li>
+                        <li><i class="fas fa-times"></i> Clientes insatisfeitos</li>
+                    </ul>
+                </div>
+                <div class="solution-card">
+                    <div class="solution-icon">🚀</div>
+                    <h3>Com o Smart Administrator</h3>
+                    <ul class="solution-list">
+                        <li><i class="fas fa-check"></i> Tudo centralizado e em tempo real</li>
+                        <li><i class="fas fa-check"></i> Alertas automáticos de estoque</li>
+                        <li><i class="fas fa-check"></i> Vendas otimizadas com dados</li>
+                        <li><i class="fas fa-check"></i> Automação de processos</li>
+                        <li><i class="fas fa-check"></i> Relatórios inteligentes</li>
+                        <li><i class="fas fa-check"></i> Atendimento ágil e eficiente</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefícios -->
+    <section class="benefits-section" id="beneficios">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Benefícios</span>
+                <h2>Por que escolher o <span class="gradient-text">Smart Administrator?</span></h2>
+                <p>Resultados reais para o seu negócio</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Economize Tempo</h3>
+                    <p>Automatize tarefas repetitivas e ganhe até 15 horas por semana para focar no que importa.</p>
+                    <span class="benefit-stat">+15h/semana</span>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Aumente Vendas</h3>
+                    <p>Com dados precisos e relatórios inteligentes, tome decisões que aumentam seu faturamento.</p>
+                    <span class="benefit-stat">+40% vendas</span>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3>Controle Total</h3>
+                    <p>Estoque, vendas, clientes e financeiro em um só lugar, acessível de qualquer dispositivo.</p>
+                    <span class="benefit-stat">100% controle</span>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Dados Seguros</h3>
+                    <p>Seus dados protegidos com criptografia de ponta e backups automáticos diários.</p>
+                    <span class="benefit-stat">99.9% uptime</span>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Suporte Humano</h3>
+                    <p>Equipe brasileira pronta para ajudar via chat, telefone ou WhatsApp quando precisar.</p>
+                    <span class="benefit-stat">24/7 suporte</span>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-plug"></i>
+                    </div>
+                    <h3>Integrações</h3>
+                    <p>Conecte com PIX, nota fiscal, marketplaces e muito mais de forma automática.</p>
+                    <span class="benefit-stat">50+ integrações</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção IA - ROI e Ganhos -->
+    <section class="ai-section" id="inteligencia-artificial">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">🤖 Inteligência Artificial</span>
+                <h2>Aumente seus lucros com <span class="gradient-text">IA integrada</span></h2>
+                <p>Nossos algoritmos inteligentes trabalham 24/7 para maximizar seus resultados</p>
+            </div>
+            
+            <div class="roi-calculator">
+                <div class="roi-header">
+                    <h3>💰 Calcule quanto você pode ganhar com nossa IA</h3>
+                    <p>Baseado em dados reais de nossos clientes</p>
+                </div>
+                <div class="roi-grid">
+                    <div class="roi-card">
+                        <div class="roi-icon"><i class="fas fa-robot"></i></div>
+                        <h4>Previsão de Demanda</h4>
+                        <p>IA analisa histórico de vendas e prevê demanda futura</p>
+                        <div class="roi-result">
+                            <span class="roi-value">-30%</span>
+                            <span class="roi-label">em estoque parado</span>
+                        </div>
+                        <div class="roi-money">
+                            <i class="fas fa-piggy-bank"></i>
+                            <span>Economia média: <strong>R$ 8.500/mês</strong></span>
+                        </div>
+                    </div>
+                    <div class="roi-card featured">
+                        <div class="roi-badge">Mais Impactante</div>
+                        <div class="roi-icon"><i class="fas fa-brain"></i></div>
+                        <h4>Recomendação Inteligente</h4>
+                        <p>Sugere produtos complementares no PDV automaticamente</p>
+                        <div class="roi-result">
+                            <span class="roi-value">+35%</span>
+                            <span class="roi-label">no ticket médio</span>
+                        </div>
+                        <div class="roi-money">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Aumento médio: <strong>R$ 15.000/mês</strong></span>
+                        </div>
+                    </div>
+                    <div class="roi-card">
+                        <div class="roi-icon"><i class="fas fa-user-clock"></i></div>
+                        <h4>Previsão de Churn</h4>
+                        <p>Identifica clientes em risco de abandonar antes que aconteça</p>
+                        <div class="roi-result">
+                            <span class="roi-value">-45%</span>
+                            <span class="roi-label">em perda de clientes</span>
+                        </div>
+                        <div class="roi-money">
+                            <i class="fas fa-hand-holding-usd"></i>
+                            <span>Retenção média: <strong>R$ 12.000/mês</strong></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="roi-total">
+                    <div class="roi-total-content">
+                        <div class="roi-total-icon"><i class="fas fa-coins"></i></div>
+                        <div class="roi-total-info">
+                            <span class="roi-total-label">Ganho potencial com IA</span>
+                            <span class="roi-total-value">+ R$ 35.500/mês</span>
+                            <span class="roi-total-note">*Média baseada em empresas com faturamento de R$ 100k/mês</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ai-features">
+                <div class="ai-feature">
+                    <div class="ai-feature-icon"><i class="fas fa-magic"></i></div>
+                    <h4>Precificação Dinâmica</h4>
+                    <p>Ajusta preços automaticamente baseado em demanda, concorrência e margem desejada</p>
+                </div>
+                <div class="ai-feature">
+                    <div class="ai-feature-icon"><i class="fas fa-bullseye"></i></div>
+                    <h4>Segmentação Automática</h4>
+                    <p>Classifica clientes por comportamento de compra para ações personalizadas</p>
+                </div>
+                <div class="ai-feature">
+                    <div class="ai-feature-icon"><i class="fas fa-chart-area"></i></div>
+                    <h4>Análise Preditiva</h4>
+                    <p>Prevê tendências de vendas e sazonalidade para planejamento estratégico</p>
+                </div>
+                <div class="ai-feature">
+                    <div class="ai-feature-icon"><i class="fas fa-bell"></i></div>
+                    <h4>Alertas Inteligentes</h4>
+                    <p>Notifica sobre anomalias, oportunidades e riscos em tempo real</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção WhatsApp Marketing -->
+    <section class="whatsapp-section" id="whatsapp-marketing">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge"><i class="fab fa-whatsapp"></i> WhatsApp Marketing</span>
+                <h2>Campanhas de <span class="gradient-text">reengajamento automático</span></h2>
+                <p>Recupere clientes inativos e aumente vendas com mensagens personalizadas</p>
+            </div>
+
+            <div class="whatsapp-showcase">
+                <div class="whatsapp-info">
+                    <h3>Transforme seu WhatsApp em uma máquina de vendas</h3>
+                    <ul class="whatsapp-features">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Campanhas de Reengajamento</strong>
+                                <p>Envie mensagens automáticas para clientes que não compram há X dias</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Segmentação Inteligente</strong>
+                                <p>Clientes categorizados por comportamento de compra com IA</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Templates Personalizados</strong>
+                                <p>Use variáveis como {nome} e {organization_name} nas mensagens</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Envio de Imagens</strong>
+                                <p>Envie catálogos e promoções com imagens diretamente</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Histórico Completo</strong>
+                                <p>Acompanhe todos os envios com status detalhado</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="whatsapp-stats">
+                        <div class="ws-stat">
+                            <span class="ws-stat-value">89%</span>
+                            <span class="ws-stat-label">Taxa de abertura</span>
+                        </div>
+                        <div class="ws-stat">
+                            <span class="ws-stat-value">45%</span>
+                            <span class="ws-stat-label">Taxa de resposta</span>
+                        </div>
+                        <div class="ws-stat">
+                            <span class="ws-stat-value">3x</span>
+                            <span class="ws-stat-label">Mais conversões</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="whatsapp-mockup">
+                    <div class="phone-frame">
+                        <div class="phone-notch"></div>
+                        <div class="phone-screen">
+                            <div class="wa-header">
+                                <i class="fab fa-whatsapp"></i>
+                                <span>Smart Administrator</span>
+                            </div>
+                            <div class="wa-messages">
+                                <div class="wa-message received">
+                                    <p>Olá Maria! 👋</p>
+                                    <p>Sentimos sua falta! Faz 30 dias que você não nos visita.</p>
+                                    <p>Preparamos um cupom especial de <strong>15% OFF</strong> só pra você! 🎁</p>
+                                    <p>Use o código: <strong>VOLTEI15</strong></p>
+                                    <span class="wa-time">10:30</span>
+                                </div>
+                                <div class="wa-message sent">
+                                    <p>Opa! Que legal, vou passar aí hoje! 😊</p>
+                                    <span class="wa-time">10:32</span>
+                                </div>
+                                <div class="wa-message received">
+                                    <p>Maravilha! Te esperamos! 🤩</p>
+                                    <span class="wa-time">10:32</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="campaign-result">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>Cliente reativado!</span>
+                        <strong>+R$ 450 em vendas</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="campaign-types">
+                <h3>Tipos de Campanhas Disponíveis</h3>
+                <div class="campaign-grid">
+                    <div class="campaign-card">
+                        <div class="campaign-icon"><i class="fas fa-user-slash"></i></div>
+                        <h4>Clientes Inativos</h4>
+                        <p>Reengaje quem não compra há 15, 30, 60 ou 90 dias</p>
+                        <span class="campaign-tag">Automático</span>
+                    </div>
+                    <div class="campaign-card">
+                        <div class="campaign-icon"><i class="fas fa-chart-line"></i></div>
+                        <h4>Previsão de Compra</h4>
+                        <p>Preveja quando cada cliente vai comprar novamente com IA</p>
+                        <span class="campaign-tag">Automático</span>
+                    </div>
+                    <div class="campaign-card">
+                        <div class="campaign-icon"><i class="fas fa-tags"></i></div>
+                        <h4>Promoções</h4>
+                        <p>Divulgue ofertas para base segmentada</p>
+                        <span class="campaign-tag">Manual</span>
+                    </div>
+                    <div class="campaign-card">
+                        <div class="campaign-icon"><i class="fas fa-box-open"></i></div>
+                        <h4>Novidades</h4>
+                        <p>Avise sobre novos produtos em estoque</p>
+                        <span class="campaign-tag">Manual</span>
+                    </div>
+                    <div class="campaign-card">
+                        <div class="campaign-icon"><i class="fas fa-star"></i></div>
+                        <h4>Fidelidade</h4>
+                        <p>Recompense clientes VIP com ofertas exclusivas</p>
+                        <span class="campaign-tag">Automático</span>
+                    </div>
+                    <div class="campaign-card">
+                        <div class="campaign-icon"><i class="fas fa-redo"></i></div>
+                        <h4>Recompra</h4>
+                        <p>Lembre clientes de produtos recorrentes</p>
+                        <span class="campaign-tag">Automático</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Funcionalidades -->
+    <section class="features-section" id="funcionalidades">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Funcionalidades</span>
+                <h2>Tudo que você precisa em <span class="gradient-text">um só sistema</span></h2>
+                <p>Módulos completos para gerenciar toda sua operação</p>
+            </div>
+            <div class="features-tabs">
+                <button class="tab-btn active" data-tab="vendas">
+                    <i class="fas fa-shopping-cart"></i> PDV
+                </button>
+                <button class="tab-btn" data-tab="estoque">
+                    <i class="fas fa-boxes"></i> Estoque
+                </button>
+                <button class="tab-btn" data-tab="compras">
+                    <i class="fas fa-file-invoice"></i> Compras/NFe
+                </button>
+                <button class="tab-btn" data-tab="financeiro">
+                    <i class="fas fa-wallet"></i> Financeiro
+                </button>
+                <button class="tab-btn" data-tab="clientes">
+                    <i class="fas fa-users"></i> CRM
+                </button>
+            </div>
+            <div class="features-content">
+                <div class="feature-panel active" id="vendas">
+                    <div class="feature-info">
+                        <h3>PDV Moderno com Interface em Cards</h3>
+                        <p>Ponto de venda rápido, intuitivo e com visual moderno para agilizar suas vendas.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Interface em cards (visual moderno)</li>
+                            <li><i class="fas fa-check"></i> Vendas varejo e atacado</li>
+                            <li><i class="fas fa-check"></i> Venda fracionada (granel)</li>
+                            <li><i class="fas fa-check"></i> Múltiplas formas de pagamento</li>
+                            <li><i class="fas fa-check"></i> Programa de fidelidade integrado</li>
+                            <li><i class="fas fa-check"></i> Cálculo de margem em tempo real</li>
+                        </ul>
+                        <a href="#demo" class="btn btn-primary">Ver em ação</a>
+                    </div>
+                    <div class="feature-image">
+                        <div class="feature-mockup">
+                            <i class="fas fa-cash-register"></i>
+                            <span>PDV Smart</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-panel" id="estoque">
+                    <div class="feature-info">
+                        <h3>Controle de Estoque Avançado</h3>
+                        <p>Alertas inteligentes baseados no mínimo individual de cada produto.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Estoque mínimo por produto</li>
+                            <li><i class="fas fa-check"></i> Alertas de estoque baixo</li>
+                            <li><i class="fas fa-check"></i> Controle de validade e lote</li>
+                            <li><i class="fas fa-check"></i> Múltiplas unidades de medida</li>
+                            <li><i class="fas fa-check"></i> Fracionamento configurável</li>
+                            <li><i class="fas fa-check"></i> Histórico de movimentações</li>
+                        </ul>
+                        <a href="#demo" class="btn btn-primary">Ver em ação</a>
+                    </div>
+                    <div class="feature-image">
+                        <div class="feature-mockup">
+                            <i class="fas fa-warehouse"></i>
+                            <span>Estoque Smart</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-panel" id="compras">
+                    <div class="feature-info">
+                        <h3>Importação Automática de NFe</h3>
+                        <p>Importe XML de notas fiscais e atualize estoque, preços e contas a pagar automaticamente.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Upload de XML de NFe</li>
+                            <li><i class="fas fa-check"></i> Preview antes de importar</li>
+                            <li><i class="fas fa-check"></i> Criação automática de produtos</li>
+                            <li><i class="fas fa-check"></i> Atualização de estoque</li>
+                            <li><i class="fas fa-check"></i> Geração de contas a pagar</li>
+                            <li><i class="fas fa-check"></i> Análise de preços com IA</li>
+                        </ul>
+                        <a href="#demo" class="btn btn-primary">Ver em ação</a>
+                    </div>
+                    <div class="feature-image">
+                        <div class="feature-mockup">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Compras Smart</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-panel" id="financeiro">
+                    <div class="feature-info">
+                        <h3>Gestão Financeira Completa</h3>
+                        <p>Contas a pagar, receber, fechamento de caixa e indicadores financeiros.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Contas a pagar e receber</li>
+                            <li><i class="fas fa-check"></i> Fechamento de caixa diário</li>
+                            <li><i class="fas fa-check"></i> Crediário com parcelas</li>
+                            <li><i class="fas fa-check"></i> Controle de inadimplência</li>
+                            <li><i class="fas fa-check"></i> Meta de vendas por vendedor</li>
+                            <li><i class="fas fa-check"></i> Dashboard financeiro</li>
+                        </ul>
+                        <a href="#demo" class="btn btn-primary">Ver em ação</a>
+                    </div>
+                    <div class="feature-image">
+                        <div class="feature-mockup">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Financeiro Smart</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-panel" id="clientes">
+                    <div class="feature-info">
+                        <h3>CRM com WhatsApp Integrado</h3>
+                        <p>Gestão completa de clientes com comunicação automatizada via WhatsApp.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Cadastro completo</li>
+                            <li><i class="fas fa-check"></i> Histórico de compras</li>
+                            <li><i class="fas fa-check"></i> Segmentação por comportamento</li>
+                            <li><i class="fas fa-check"></i> Programa de fidelidade</li>
+                            <li><i class="fas fa-check"></i> Envio de campanhas WhatsApp</li>
+                            <li><i class="fas fa-check"></i> Reengajamento automático</li>
+                        </ul>
+                        <a href="#demo" class="btn btn-primary">Ver em ação</a>
+                    </div>
+                    <div class="feature-image">
+                        <div class="feature-mockup">
+                            <i class="fas fa-address-book"></i>
+                            <span>CRM Smart</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Depoimentos -->
+    <section class="testimonials-section" id="depoimentos">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Depoimentos</span>
+                <h2>O que nossos <span class="gradient-text">clientes dizem</span></h2>
+                <p>Histórias reais de empresas que transformaram seus negócios</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Antes eu perdia horas com planilhas. Agora tenho tudo na palma da mão. Minhas vendas aumentaram 35% em 3 meses!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MR</div>
+                        <div class="author-info">
+                            <strong>Maria Rodrigues</strong>
+                            <span>Agroshopp Mundo Animal</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card featured">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"O suporte é excepcional! Sempre que preciso, são rápidos e resolvem. O sistema é muito completo e fácil de usar. Recomendo demais!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">JS</div>
+                        <div class="author-info">
+                            <strong>João Silva</strong>
+                            <span>Auto Peças Central</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">"Finalmente consegui ter controle real do meu estoque. Acabaram as vendas perdidas por falta de produto!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AC</div>
+                        <div class="author-info">
+                            <strong>Ana Costa</strong>
+                            <span>Farmácia Saúde Plus</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonials-stats">
+                <div class="t-stat">
+                    <span class="t-stat-number">4.9</span>
+                    <div class="t-stat-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <span class="t-stat-label">Nota média</span>
+                </div>
+                <div class="t-stat">
+                    <span class="t-stat-number">2.500+</span>
+                    <span class="t-stat-label">Empresas ativas</span>
+                </div>
+                <div class="t-stat">
+                    <span class="t-stat-number">98%</span>
+                    <span class="t-stat-label">Recomendam</span>
+                </div>
+                <div class="t-stat">
+                    <span class="t-stat-number">5 anos</span>
+                    <span class="t-stat-label">No mercado</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planos -->
+    <section class="pricing-section" id="planos">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Planos</span>
+                <h2>Escolha o plano ideal para <span class="gradient-text">seu negócio</span></h2>
+                <p>Todos os planos incluem 30 dias grátis. Sem compromisso.</p>
+            </div>
+            <div class="pricing-toggle">
+                <span class="toggle-label active">Mensal</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="pricingToggle">
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="toggle-label">Anual <span class="discount-badge">-20%</span></span>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Essencial</h3>
+                        <p>Para começar a organizar</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="currency">R$</span>
+                        <span class="amount" data-monthly="300" data-yearly="240">300</span>
+                        <span class="period">/mês</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 2 usuários</li>
+                        <li><i class="fas fa-check"></i> PDV completo com cards</li>
+                        <li><i class="fas fa-check"></i> Controle de estoque</li>
+                        <li><i class="fas fa-check"></i> Cadastro de clientes</li>
+                        <li><i class="fas fa-check"></i> Relatórios básicos</li>
+                        <li><i class="fas fa-check"></i> Suporte por email</li>
+                        <li class="disabled"><i class="fas fa-times"></i> WhatsApp integrado</li>
+                        <li class="disabled"><i class="fas fa-times"></i> IA e Machine Learning</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline btn-block">Começar Grátis</a>
+                </div>
+                <div class="pricing-card popular">
+                    <div class="popular-badge">Mais Popular</div>
+                    <div class="pricing-header">
+                        <h3>Profissional</h3>
+                        <p>Para empresas em crescimento</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="currency">R$</span>
+                        <span class="amount" data-monthly="450" data-yearly="360">450</span>
+                        <span class="period">/mês</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 5 usuários</li>
+                        <li><i class="fas fa-check"></i> Tudo do Essencial +</li>
+                        <li><i class="fas fa-check"></i> Financeiro completo</li>
+                        <li><i class="fas fa-check"></i> Importação de NFe (XML)</li>
+                        <li><i class="fas fa-check"></i> WhatsApp integrado</li>
+                        <li><i class="fas fa-check"></i> Campanhas de marketing</li>
+                        <li><i class="fas fa-check"></i> Suporte prioritário</li>
+                        <li><i class="fas fa-check"></i> Relatórios PDF/Excel</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary btn-block">Começar Grátis</a>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Enterprise</h3>
+                        <p>IA + Suporte dedicado</p>
+                    </div>
+                    <div class="pricing-price">
+                        <span class="currency">R$</span>
+                        <span class="amount" data-monthly="700" data-yearly="560">700</span>
+                        <span class="period">/mês</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> Usuários ilimitados</li>
+                        <li><i class="fas fa-check"></i> Tudo do Profissional +</li>
+                        <li><i class="fas fa-check"></i> IA: Previsão de demanda</li>
+                        <li><i class="fas fa-check"></i> IA: Análise de preços</li>
+                        <li><i class="fas fa-check"></i> IA: Reengajamento</li>
+                        <li><i class="fas fa-check"></i> Multi-tenant (filiais)</li>
+                        <li><i class="fas fa-check"></i> Gerente de conta</li>
+                        <li><i class="fas fa-check"></i> Treinamento incluso</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline btn-block">Falar com Vendas</a>
+                </div>
+            </div>
+            <div class="pricing-guarantee">
+                <i class="fas fa-shield-alt"></i>
+                <div>
+                    <strong>Garantia de 30 dias</strong>
+                    <p>Se não ficar satisfeito, devolvemos 100% do seu dinheiro. Sem perguntas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">FAQ</span>
+                <h2>Perguntas <span class="gradient-text">frequentes</span></h2>
+                <p>Tire suas dúvidas sobre o Smart Administrator</p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Como funciona o período de teste grátis?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Você tem 30 dias para testar todas as funcionalidades do plano escolhido, sem precisar cadastrar cartão de crédito. Ao final do período, você decide se quer continuar.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Preciso instalar algum programa?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Não! O Smart Administrator é 100% online (na nuvem). Basta acessar pelo navegador de qualquer computador, tablet ou celular.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Meus dados estão seguros?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim! Utilizamos criptografia de ponta a ponta, servidores seguros e fazemos backups automáticos diários. Seus dados estão protegidos 24/7.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Posso migrar meus dados de outro sistema?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim! Nossa equipe ajuda você a importar produtos, clientes e dados de outros sistemas. A migração é gratuita para planos Professional e Enterprise.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>O sistema emite nota fiscal?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim! Nos planos Professional e Enterprise, você pode emitir NF-e e NFC-e diretamente pelo sistema, de forma integrada e automática.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Como funciona o suporte?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Oferecemos suporte por chat, email e WhatsApp. Planos Professional têm suporte prioritário e Enterprise contam com gerente de conta dedicado.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Posso cancelar a qualquer momento?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sim! Não há fidelidade. Você pode cancelar quando quiser, diretamente pelo painel, sem burocracia ou taxas de cancelamento.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Funciona para meu tipo de negócio?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>O Smart Administrator é flexível e atende diversos segmentos: varejo, atacado, serviços, pet shops, farmácias, auto peças, e muito mais!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-cta">
+                <p>Não encontrou sua resposta?</p>
+                <a href="#" class="btn btn-primary" id="openChatFromFaq">
+                    <i class="fas fa-comments"></i> Fale com nosso time
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="final-cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Pronto para transformar sua gestão?</h2>
+                <p>Junte-se a mais de 2.500 empresas que já economizam tempo e aumentam vendas com o Smart Administrator.</p>
+                <div class="cta-buttons">
+                    <a href="#planos" class="btn btn-white btn-lg">
+                        <i class="fas fa-rocket"></i> Começar Teste Grátis
+                    </a>
+                    <a href="https://wa.me/5562981561666?text=Olá! Gostaria de saber mais sobre o Smart Administrator" class="btn btn-outline-white btn-lg" target="_blank" rel="noopener">
+                        <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+                    </a>
+                </div>
+                <p class="cta-note">✓ 30 dias grátis ✓ Sem cartão de crédito ✓ Cancele quando quiser</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Smart<strong>Administrator</strong></span>
+                    </div>
+                    <p>Sistema completo de gestão empresarial para pequenas e médias empresas.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Produto</h4>
+                    <ul>
+                        <li><a href="#funcionalidades">Funcionalidades</a></li>
+                        <li><a href="#planos">Planos e Preços</a></li>
+                        <li><a href="#">Integrações</a></li>
+                        <li><a href="#">Atualizações</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="#">Sobre nós</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Carreiras</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="#">Central de Ajuda</a></li>
+                        <li><a href="#">Tutoriais</a></li>
+                        <li><a href="#">Status do Sistema</a></li>
+                        <li><a href="#">Fale Conosco</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Smart Administrator. Todos os direitos reservados.</p>
+                <div class="footer-legal">
+                    <a href="#">Termos de Uso</a>
+                    <a href="#">Política de Privacidade</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container" id="chatbot">
+        <button class="chatbot-toggle" id="chatbotToggle" aria-label="Abrir chat de atendimento">
+            <i class="fas fa-comments" aria-hidden="true"></i>
+            <span class="chatbot-badge">1</span>
+        </button>
+        <a href="https://wa.me/5562981561666?text=Olá! Gostaria de saber mais sobre o Smart Administrator" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        </a>
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <div class="chatbot-avatar">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="chatbot-info">
+                    <strong>Assistente Smart</strong>
+                    <span class="online-status">Online agora</span>
+                </div>
+                <button class="chatbot-close" id="chatbotClose" aria-label="Fechar chat">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot">
+                    <div class="message-content">
+                        <p>Olá! 👋 Sou o assistente virtual do Smart Administrator.</p>
+                        <p>Como posso ajudar você hoje?</p>
+                    </div>
+                </div>
+                <div class="quick-replies">
+                    <button class="quick-reply" data-question="precos">💰 Quais os preços?</button>
+                    <button class="quick-reply" data-question="teste">🎁 Como testar grátis?</button>
+                    <button class="quick-reply" data-question="funcionalidades">⚡ O que o sistema faz?</button>
+                    <button class="quick-reply" id="whatsappButton" onclick="window.open('https://wa.me/5562981561666?text=Olá! Gostaria de saber mais sobre o Smart Administrator', '_blank')">📱 Falar no WhatsApp</button>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatInput" placeholder="Digite sua pergunta..." aria-label="Digite sua mensagem">
+                <button id="chatSend" aria-label="Enviar mensagem">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+<script>
+// ===== CHATBOT FAQ DATABASE =====
+const faqDatabase = [
+    // GANHAR DINHEIRO - PRIORIDADE MÁXIMA
+    { keywords: ['ganhar dinheiro', 'mais dinheiro', 'como ganhar', 'faturar mais', 'aumentar lucro', 'mais lucro', 'aumentar vendas', 'rentabilidade'], 
+      answer: 'Aumente seus lucros com nosso sistema! 💰\n\n🎯 **Venda 35% mais** com programa de fidelidade\n📊 **Reduza perdas** com controle de estoque inteligente\n💡 **Economize 25%** nas compras com análise de preços IA\n📱 **Conquiste mais clientes** com campanhas WhatsApp\n📈 **Otimize preços** com margens automáticas\n🔍 **Identifique oportunidades** com relatórios detalhados\n\nNossos clientes aumentam o faturamento em média 40% no primeiro ano!' },
+    // PREÇOS E PLANOS (1-15)
+    { keywords: ['preço', 'preco', 'valor', 'custo', 'quanto custa', 'mensalidade', 'plano'], 
+      answer: 'Temos 3 planos: **Essencial** (R$ 300/mês) para começar, **Profissional** (R$ 450/mês) mais popular com WhatsApp integrado, e **Enterprise** (R$ 700/mês) com IA completa. Todos incluem 30 dias grátis! 🎁' },
+    { keywords: ['desconto', 'promoção', 'promocao', 'cupom'], 
+      answer: 'Sim! No plano anual você ganha **20% de desconto**. Além disso, temos uma promoção especial com 30 dias grátis + implantação sem custo! 🔥' },
+    { keywords: ['plano essencial', 'básico', 'basico', 'mais barato', 'starter'], 
+      answer: 'O plano **Essencial** (R$ 300/mês) inclui: 2 usuários, PDV completo com cards, controle de estoque, cadastro de clientes e relatórios básicos. Ideal para começar!' },
+    { keywords: ['plano profissional', 'professional', 'intermediário', 'intermediario'], 
+      answer: 'O plano **Profissional** (R$ 450/mês) é o mais popular! Inclui: 5 usuários, financeiro completo, importação de NFe, WhatsApp integrado, campanhas de marketing e relatórios PDF/Excel. 🚀' },
+    { keywords: ['plano enterprise', 'empresarial', 'completo'], 
+      answer: 'O plano **Enterprise** (R$ 700/mês) é para quem quer IA completa: usuários ilimitados, previsão de demanda, análise de preços com ML, reengajamento automático, multi-tenant (filiais), gerente de conta e treinamento incluso.' },
+    { keywords: ['anual', 'pagamento anual', 'economia'], 
+      answer: 'No pagamento anual você economiza **20%**! Por exemplo, o Profissional sai de R$ 450 para R$ 360/mês. É a melhor opção para quem quer economizar! 💰' },
+    { keywords: ['forma de pagamento', 'pagar', 'cartão', 'cartao', 'boleto', 'pix pagamento'], 
+      answer: 'Aceitamos cartão de crédito (parcelamos em até 12x), boleto bancário e PIX. Você escolhe a melhor opção para você! 💳' },
+    { keywords: ['reajuste', 'aumento', 'preço aumenta'], 
+      answer: 'Nossos preços são reajustados anualmente conforme índices de mercado. Clientes ativos são sempre avisados com 60 dias de antecedência.' },
+    { keywords: ['taxa', 'taxa extra', 'cobrança adicional'], 
+      answer: 'Não cobramos taxas extras! O valor do plano inclui tudo: sistema, atualizações, suporte e armazenamento. Sem surpresas! ✅' },
+    { keywords: ['fidelidade', 'contrato', 'multa'], 
+      answer: 'Não temos fidelidade! Você pode cancelar quando quiser, sem multas ou taxas de cancelamento. Simples assim! 😊' },
+    { keywords: ['upgrade', 'mudar plano', 'aumentar plano'], 
+      answer: 'Você pode fazer upgrade do plano a qualquer momento! O valor é proporcional aos dias restantes do mês. Sem burocracia! ⬆️' },
+    { keywords: ['downgrade', 'diminuir plano'], 
+      answer: 'Downgrade disponível no próximo ciclo de cobrança. Avise-nos com 10 dias de antecedência! ⬇️' },
+    { keywords: ['mensalidade', 'cobrança', 'vencimento'], 
+      answer: 'Cobrança mensal automática no dia da ativação. Você recebe email 3 dias antes de debitar. Sem surpresas! 📅' },
+    { keywords: ['boleto vencido', 'segunda via', 'pagamento atrasado'], 
+      answer: 'Segunda via disponível no portal! Boleto com 3 dias adicionais após vencimento. Depois suspensão temporária. 📄' },
+    { keywords: ['nota fiscal', 'fatura', 'recibo'], 
+      answer: 'Emissão automática de nota fiscal e fatura todo mês. Disponíveis no portal do cliente. 🧾' },
+
+    // TESTE GRÁTIS (16-25)
+    { keywords: ['teste', 'grátis', 'gratis', 'experimentar', 'trial', 'free'], 
+      answer: 'Sim! Oferecemos **30 dias grátis** para você testar todas as funcionalidades. Não precisa cadastrar cartão de crédito! Comece agora mesmo. 🎁' },
+    { keywords: ['cartão teste', 'cartao teste', 'precisa cartão', 'precisa cartao'], 
+      answer: 'Não! Para o teste grátis você **não precisa cadastrar cartão**. É só criar sua conta e começar a usar imediatamente! 🚀' },
+    { keywords: ['como testar', 'começar teste', 'iniciar teste'], 
+      answer: 'É muito fácil! Clique em "Começar Teste Grátis", preencha seus dados básicos e pronto! Em menos de 2 minutos você já está usando o sistema. ⚡' },
+    { keywords: ['limite teste', 'restrição teste', 'funcionalidade teste'], 
+      answer: 'No período de teste você tem acesso a **todas as funcionalidades** do plano escolhido, sem limitações. Teste tudo à vontade!' },
+    { keywords: ['após teste', 'depois teste', 'terminar teste', 'acabar teste'], 
+      answer: 'Ao final dos 30 dias, você escolhe se quer continuar. Se não quiser, sua conta é pausada automaticamente. Sem cobranças surpresa!' },
+    { keywords: ['dados teste', 'perder dados', 'meus dados teste'], 
+      answer: 'Seus dados ficam guardados por 90 dias após o teste. Se decidir assinar, tudo continua de onde parou. Se não, pode exportar seus dados.' },
+    { keywords: ['estender teste', 'mais dias teste', 'prolongar teste'], 
+      answer: 'Em casos especiais podemos estender o teste. Entre em contato com nosso time pelo WhatsApp que avaliamos seu caso! 📱' },
+    { keywords: ['cancelar teste', 'parar teste'], 
+      answer: 'Pode cancelar o teste a qualquer momento! Basta acessar sua conta e clicar em "Cancelar". Sem custos e sem complicação! ❌' },
+    { keywords: ['teste empresarial', 'teste empresa'], 
+      answer: 'Teste empresarial disponível! Configure com dados reais da sua empresa. Nossa equipe ajuda na configuração inicial! 🏢' },
+    { keywords: ['avaliação teste', 'feedback teste'], 
+      answer: 'Adoramos feedback! Durante o teste, nossa equipe entra em contato para saber sua opinião e ajudar no que precisar! 💬' },
+
+    // PDV E VENDAS (26-40)
+    { keywords: ['pdv', 'ponto de venda', 'frente de caixa', 'caixa'], 
+      answer: 'PDV moderno com interface em cards! Vendas varejo/atacado, múltiplos pagamentos, cálculo automático de troco, programa de fidelidade integrado. Rápido e intuitivo! 🛒' },
+    { keywords: ['venda', 'vender', 'registrar venda'], 
+      answer: 'Venda simplificada em 3 cliques! Busque produto, informe quantidade, selecione pagamento. Pronto! Venda registrada e estoque atualizado automaticamente! ⚡' },
+    { keywords: ['atacado', 'venda atacado', 'preço atacado'], 
+      answer: 'Venda no atacado com preços diferenciados! Calcule automaticamente baseado na tabela de atacado. Controle por cliente ou quantidade! 📦' },
+    { keywords: ['fracionado', 'granel', 'peso'], 
+      answer: 'Venda fracionada para produtos a granel! Informe peso, sistema calcula preço automaticamente. Ideal para mercearias e lojas de produtos naturais! ⚖️' },
+    { keywords: ['pagamento', 'formas pagamento', 'dinheiro', 'cartao', 'pix'], 
+      answer: 'Múltiplas formas: dinheiro, cartão (débito/crédito), PIX, boleto, crediário. Calcula troco automático para dinheiro! 💳' },
+    { keywords: ['troco', 'calcular troco', 'dinheiro troco'], 
+      answer: 'Cálculo automático de troco! Sistema informa valor exato. Evita erros e agiliza atendimento no caixa! 💰' },
+    { keywords: ['desconto', 'dar desconto', 'percentual'], 
+      answer: 'Desconto por percentual ou valor! Configura regras por cliente, quantidade ou produto. Aplica automaticamente no PDV! 🏷️' },
+    { keywords: ['fidelidade', 'pontos', 'programa fidelidade'], 
+      answer: 'Programa de fidelidade integrado! Acumule pontos, resgate prêmios. Clientes mais fiéis compram 35% mais! 🎯' },
+    { keywords: ['vendedor', 'comissão', 'vendedor comissão'], 
+      answer: 'Controle de vendedores com comissões automáticas! Calcule por percentual ou fixo. Relatório de vendas por vendedor incluído! 👨‍💼' },
+    { keywords: ['orçamento', 'pedidos', 'pré-venda'], 
+      answer: 'Crie orçamentos e pedidos! Converta em venda posterior. Controle status e acompanhamento completo! 📋' },
+    { keywords: ['fechamento caixa', 'fechar caixa', 'conferência caixa'], 
+      answer: 'Fechamento diário automático! Compara valor esperado com realizado. Identifica diferenças por forma de pagamento! 📊' },
+    { keywords: ['offline', 'sem internet', 'pdv offline'], 
+      answer: 'PDV funciona offline! Registre vendas sem internet. Sincroniza automaticamente quando voltar. Nunca perca uma venda! 📡' },
+    { keywords: ['código barras', 'leitor', 'scanner'], 
+      answer: 'Leitura de código de barras! Agiliza vendas, reduz erros. Compatível com leitores padrão do mercado! 📱' },
+    { keywords: ['cancelar venda', 'estornar', 'devolução'], 
+      answer: 'Cancelamento e estorno simples! Devolução parcial ou total. Estoque atualizado automaticamente. Controle total! ↩️' },
+    { keywords: ['relatório vendas', 'vendas dia', 'vendas mês'], 
+      answer: 'Relatórios completos de vendas! Por período, vendedor, produto, cliente. Exporte PDF/Excel. Análise detalhada! 📈' },
+
+    // ESTOQUE (41-55)
+    { keywords: ['estoque', 'controle estoque', 'inventário', 'inventario'], 
+      answer: 'Controle completo de estoque! Entrada/saída automática, alertas de mínimo, múltiplos depósitos. Nunca mais perca vendas por falta de produto! 📦' },
+    { keywords: ['estoque baixo', 'alerta estoque', 'mínimo'], 
+      answer: 'Alertas inteligentes de estoque! Configura mínimo por produto. Receba notificação quando atingir nível crítico! ⚠️' },
+    { keywords: ['entrada estoque', 'comprar estoque', 'receber mercadoria'], 
+      answer: 'Entrada de estoque simplificada! Importe XML de NFe ou cadastre manualmente. Atualiza automaticamente! 📥' },
+    { keywords: ['saída estoque', 'baixa estoque', 'saida'], 
+      answer: 'Baixa automática nas vendas! Controle por transferência, perda, ajuste. Histórico completo de movimentações! 📤' },
+    { keywords: ['validade', 'vencimento', 'lote'], 
+      answer: 'Controle de validade e lote! Alertas de vencimento, FIFO automático. Ideal para farmácias e alimentos! 📅' },
+    { keywords: ['múltiplos depósitos', 'filial estoque', 'armazém'], 
+      answer: 'Controle multi-depósitos! Transfira entre locais, saldo por filial. Visão consolidada ou individual! 🏭' },
+    { keywords: ['inventário', 'contar estoque', 'ajuste'], 
+      answer: 'Inventário facilitado! Conte estoque, ajuste diferenças. Gera relatório de divergências. Preciso e rápido! 🔍' },
+    { keywords: ['curva abc', 'análise estoque', 'produtos mais vendidos'], 
+      answer: 'Curva ABC automática! Identifica produtos A (mais importantes), B e C. Otimiza espaço e capital! 📊' },
+    { keywords: ['fornecedor', 'compra', 'nf entrada'], 
+      answer: 'Cadastro de fornecedores completo! Importe NFe de entrada, gere contas a pagar. Controle de custos! 🤝' },
+    { keywords: ['produto', 'cadastrar produto', 'catálogo'], 
+      answer: 'Cadastro de produtos completo! Código, descrição, preço, estoque mínimo, margem. Organização por categorias! 📝' },
+    { keywords: ['preço custo', 'preço venda', 'margem'], 
+      answer: 'Controle de preços e margens! Calcule automaticamente baseado no custo. Defina diferentes margens por produto! 💰' },
+    { keywords: ['transferência', 'mover estoque'], 
+      answer: 'Transferência entre depósitos! Movimente produtos, mantém histórico. Saldo atualizado em tempo real! 🔄' },
+    { keywords: ['relatório estoque', 'saldo estoque'], 
+      answer: 'Relatório de estoque detalhado! Saldo atual, valorizado, curva ABC. Exporte Excel completo! 📦' },
+    { keywords: ['ajuste estoque', 'correção', 'diferença'], 
+      answer: 'Ajustes de estoque com justificativa! Corrija perdas, quebras, erros. Mantém controle e auditoria! ✏️' },
+    { keywords: ['peso', 'unidade medida', 'fracionar'], 
+      answer: 'Múltiplas unidades de medida! Venda por unidade, pacote, peso. Conversão automática. Flexibilidade total! ⚖️' },
+
+    // FINANCEIRO (56-70)
+    { keywords: ['financeiro', 'controle financeiro', 'fluxo caixa'], 
+      answer: 'Gestão financeira completa! Contas a pagar/receber, fluxo de caixa, conciliação bancária. Controle total das finanças! 💰' },
+    { keywords: ['contas pagar', 'fornecedor', 'despesa'], 
+      answer: 'Contas a pagar organizadas! Cadastre manual ou importe NFe. Controle vencimentos, gere pagamentos. Sem atrasos! 📤' },
+    { keywords: ['contas receber', 'cliente', 'receita'], 
+      answer: 'Contas a receber automáticas! Gera nas vendas, controla parcelas, envia lembretes. Melhore o fluxo de caixa! 📥' },
+    { keywords: ['boleto', 'gerar boleto', 'cobrança'], 
+      answer: 'Emissão de boletos automática! Gere nas vendas parceladas. Envie por email/WhatsApp. Controle de compensação! 🏦' },
+    { keywords: ['pix', 'receber pix', 'pagar pix'], 
+      answer: 'Integração PIX completa! Gere QR Code para receber, pague fornecedores. Crédito automático na conta! ⚡' },
+    { keywords: ['conciliação', 'conciliar', 'bancária'], 
+      answer: 'Conciliação bancária automática! Importe extrato, compare com lançamentos. Identifique divergências facilmente! 🏛️' },
+    { keywords: ['crediário', 'parcelamento', 'financiar cliente'], 
+      answer: 'Crediário simplificado! Venda parcelado direto no sistema. Controle de parcelas, inadimplência. Mais vendas! 💳' },
+    { keywords: ['inadimplência', 'cliente devendo', 'cobrança'], 
+      answer: 'Controle de inadimplência! Identifique clientes em atraso, envie lembretes. Reduza perdas em 40%! ⚠️' },
+    { keywords: ['fluxo caixa', 'entradas saídas'], 
+      answer: 'Fluxo de caixa em tempo real! Veja entradas e saídas do mês. Projeções baseadas no histórico. Tome decisões melhores! 📊' },
+    { keywords: ['dre', 'demonstração resultado', 'lucro prejuízo'], 
+      answer: 'DRE automático! Lucro bruto, despesas, lucro líquido. Visão clara da saúde financeira do negócio! 📈' },
+    { keywords: ['centro custo', 'departamento', 'setor'], 
+      answer: 'Centro de custos por departamento! Controle despesas por setor, analise rentabilidade. Gestão por divisão! 🏢' },
+    { keywords: ['taxas', 'impostos', 'tributação'], 
+      answer: 'Controle de taxas e impostos! ICMS, IPI, PIS, COFINS. Cálculo automático nas vendas. Evite problemas fiscais! 🧾' },
+    { keywords: ['relatório financeiro', 'balanço'], 
+      answer: 'Relatórios financeiros completos! Fluxo caixa, DRE, contas a pagar/receber. Exporte PDF/Excel. Análise profissional! 📋' },
+    { keywords: ['meta vendas', 'objetivo', 'comissão'], 
+      answer: 'Metas de vendas por vendedor! Acompanhe desempenho, calcule comissões. Motive equipe e aumente vendas! 🎯' },
+    { keywords: ['fechamento mensal', 'balancete'], 
+      answer: 'Fechamento mensal automático! Gera balancete, compara com orçamento. Visão completa do período! 📅' },
+
+    // CLIENTES E CRM (71-85)
+    { keywords: ['cliente', 'cadastro cliente', 'crm'], 
+      answer: 'CRM completo com histórico de compras, programa de fidelidade, segmentação inteligente. Conheça seus clientes! 👥' },
+    { keywords: ['histórico cliente', 'compras cliente'], 
+      answer: 'Histórico completo de compras! Veja o que, quando e quanto comprou. Preferências e comportamento. Venda mais! 📊' },
+    { keywords: ['segmentação', 'grupo cliente', 'categorizar'], 
+      answer: 'Segmentação inteligente! Clientes por frequência, ticket médio, última compra. Marketing direcionado! 🎯' },
+    { keywords: ['aniversário', 'data nascimento'], 
+      answer: 'Controle de aniversariantes! Envie mensagens especiais, ofertas personalizadas. Aumente a fidelidade! 🎂' },
+    { keywords: ['telefone', 'whatsapp cliente'], 
+      answer: 'Contato via WhatsApp! Campo separado para otimizar envios. Comunicação direta e eficaz! 📱' },
+    { keywords: ['endereço', 'entrega', 'localização'], 
+      answer: 'Cadastro de endereços completo! Múltiplos endereços por cliente. Controle de entregas e fretes! 🏠' },
+    { keywords: ['limite crédito', 'fiado', 'crediário cliente'], 
+      answer: 'Limite de crédito por cliente! Defina valor máximo, controle utilizações. Venda seguro! 💳' },
+    { keywords: ['tags', 'categorias cliente'], 
+      answer: 'Tags personalizadas! Organize clientes por preferências, região, tipo. Filtre e segmente facilmente! 🏷️' },
+    { keywords: ['exportar clientes', 'lista clientes'], 
+      answer: 'Exporte lista de clientes! Excel, PDF para marketing. Filtre por segmento, data, compras. Campanhas diretas! 📋' },
+    { keywords: ['pesquisa cliente', 'buscar cliente'], 
+      answer: 'Busca rápida de clientes! Por nome, telefone, CPF, email. Encontre em segundos! Atendimento ágil! 🔍' },
+    { keywords: ['cliente inativo', 'reengajar'], 
+      answer: 'Identifique clientes inativos! Preveja próxima compra com IA. Reengaje com campanhas automáticas! 🔄' },
+    { keywords: ['ticket médio', 'valor médio compra'], 
+      answer: 'Acompanhe ticket médio! Por cliente, período, produto. Aumente o valor médio das vendas! 💰' },
+    { keywords: ['frequência compra', 'recorrência'], 
+      answer: 'Análise de frequência! Veja com que regularidade os clientes compram. Planeje campanhas! 📈' },
+    { keywords: ['satisfação', 'pesquisa satisfação'], 
+      answer: 'Medida de satisfação! Pesquisas pós-venda, NPS. Melhore o atendimento e retenha clientes! ⭐' },
+    { keywords: ['referência', 'indicação cliente'], 
+      answer: 'Programa de indicação! Clientes que indicam outros, ganham benefícios. Crescimento orgânico! 🤝' },
+
+    // RELATÓRIOS (86-100)
+    { keywords: ['relatório', 'relatorios', 'dashboard', 'painel'], 
+      answer: 'Relatórios detalhados de todas as áreas! Dashboard em tempo real, gráficos interativos, exportação PDF/Excel. Decida com dados! 📊' },
+    { keywords: ['vendas período', 'relatório vendas'], 
+      answer: 'Relatório de vendas completo! Por dia, semana, mês, ano. Compare períodos, identifique tendências. Venda mais! 📈' },
+    { keywords: ['produtos mais vendidos', 'ranking produtos'], 
+      answer: 'Ranking de produtos! Top 10 mais vendidos, margem por produto, estoque ideal. Otimize o mix! 🏆' },
+    { keywords: ['vendedor desempenho', 'relatório vendedor'], 
+      answer: 'Desempenho por vendedor! Metas vs realizado, comissões, produtos vendidos. Motive equipe! 👨‍💼' },
+    { keywords: ['relatório estoque', 'movimentação estoque'], 
+      answer: 'Relatório de estoque detalhado! Saldo atual, valorizado, curva ABC. Exporte Excel completo! 📦' },
+    { keywords: ['relatório financeiro', 'balanço', 'dre'], 
+      answer: 'Relatórios financeiros completos! Fluxo caixa, DRE, contas a pagar/receber. Visão clara das finanças! 💰' },
+    { keywords: ['clientes ativos', 'base clientes'], 
+      answer: 'Análise da base de clientes! Ativos, inativos, novos, perdidos. Estratégias de retenção! 👥' },
+    { keywords: ['exportar pdf', 'exportar excel'], 
+      answer: 'Exportação profissional! PDF com layout empresarial, Excel com fórmulas. Compartilhe facilmente! 📋' },
+    { keywords: ['gráficos', 'visualização', 'análise visual'], 
+      answer: 'Gráficos interativos! Barras, linhas, pizza, mapa. Visualização clara dos dados. Insights rápidos! 📊' },
+    { keywords: ['indicadores', 'kpi', 'métricas'], 
+      answer: 'KPIs essenciais! Ticket médio, margem, crescimento, rentabilidade. Acompanhe em tempo real! 🎯' },
+    { keywords: ['comparativo período', 'crescimento'], 
+      answer: 'Comparativo de períodos! Mês vs mês anterior, ano vs ano anterior. Crescimento real do negócio! 📈' },
+    { keywords: ['projeção', 'previsão', 'tendência'], 
+      answer: 'Projeções baseadas em IA! Preveja vendas, estoque, fluxo caixa. Planeje com antecedência! 🔮' },
+    { keywords: ['relatório personalizado', 'customizado'], 
+      answer: 'Relatórios personalizados! Crie seus próprios relatórios, campos, filtros. Flexibilidade total! 🎨' },
+    { keywords: ['email relatório', 'enviar automático'], 
+      answer: 'Envio automático de relatórios! Programação diária, semanal, mensal. Email direto na caixa de entrada! 📧' },
+    { keywords: ['análise competitiva', 'benchmark'], 
+      answer: 'Análise comparativa! Compare seus resultados com média do setor. Posicionamento claro no mercado! 🏆' },
+
+    // SUPORTE E TÉCNICO (101-115)
+    { keywords: ['suporte', 'ajuda', 'contato', 'atendimento'], 
+      answer: 'Suporte completo via WhatsApp, email e chat. Time especializado de segunda a sexta, 8h às 18h. Resposta rápida garantida! 🆘' },
+    { keywords: ['implementação', 'implantação', 'instalação'], 
+      answer: 'Implementação rápida e gratuita! Migração de dados, treinamento, configuração. Tudo pronto em até 48h! 🚀' },
+    { keywords: ['treinamento', 'capacitação', 'curso'], 
+      answer: 'Treinamento completo incluído! Vídeos, manuais, sessões ao vivo. Equipe operando 100% em 1 semana! 📚' },
+    { keywords: ['onde implementado', 'empresas que usam', 'quem usa', 'clientes', 'casos sucesso'], 
+      answer: 'Nosso sistema está implementado em mais de 2.500 empresas em todo Brasil! 🏆\n\n**Segmentos atendidos:**\n🏪 Varejo (mercados, lojas, boutiques)\n🏭 Atacado e distribuidoras\n🚜 Agropecuárias e lojas rurais\n⚙️ Indústrias pequenas e médias\n🔧 Prestadoras de serviços\n🏥 Farmácias e drogarias\n🍽️ Restaurantes e food service\n\n**Estados com mais clientes:**\n📍 São Paulo, Minas Gerais, Goiás, Paraná, Bahia\n\nTemos cases de sucesso em todos os setores! Agende uma demonstração e conheça empresas como a sua!' },
+    { keywords: ['requisitos', 'sistema', 'computador'], 
+      answer: 'Funciona em qualquer computador com navegador moderno! Chrome, Firefox, Edge. Não precisa instalar nada! 💻' },
+    { keywords: ['backup', 'segurança', 'nuvem'], 
+      answer: 'Backup diário automático na nuvem AWS! Criptografia SSL, 99.9% uptime. Seus dados sempre seguros! 🔒' },
+    { keywords: ['atualização', 'versão', 'novidades'], 
+      answer: 'Atualizações mensais com novas funcionalidades! Baseadas no feedback dos clientes. Sem custo adicional! ✨' },
+    { keywords: ['migração', 'importar dados', 'outro sistema'], 
+      answer: 'Migração completa de qualquer sistema! Excel, outros ERPs, planilhas. Conversão sem perda de dados! 📊' },
+    { keywords: ['personalização', 'customização'], 
+      answer: 'Sistema 100% personalizável! Campos, relatórios, funcionalidades específicas. Converse conosco! 🎨' },
+    { keywords: ['servidor', 'hospedagem', 'onde fica'], 
+      answer: 'Hospedagem em nuvem AWS Brasil! Servidores rápidos, backup automático, acesso 24/7. Performance garantida! ☁️' },
+    { keywords: ['celular', 'app', 'mobile'], 
+      answer: 'Sistema responsivo! Funciona perfeitamente em celulares e tablets. Acesso completo pelo navegador! 📱' },
+    { keywords: ['multiempresa', 'filiais', 'multi-tenant'], 
+      answer: 'Gestão multi-empresa completa! Controle filiais, usuários, relatórios. Dados isolados e seguros! 🏢' },
+    { keywords: ['garantia', 'devolução', 'reembolso'], 
+      answer: 'Garantia de 30 dias! Se não gostar, devolvemos 100% do dinheiro. Sem perguntas. Risco zero! ✅' },
+    { keywords: ['demo', 'demonstração', 'ver funcionando'], 
+      answer: 'Agende demonstração ao vivo! Mostramos sistema com dados do seu segmento. Tire todas as dúvidas! 🎯' },
+    { keywords: ['comparação', 'concorrência', 'outros erp'], 
+      answer: 'Diferenciais únicos: IA integrada, WhatsApp multi-tenant, importação NFe, interface moderna. Teste e compare! 🏆' },
+    { keywords: ['setor', 'segmento', 'ramo atividade'], 
+      answer: 'Ideal para varejo, atacado, distribuidoras, serviços, indústria. Customizamos para seu negócio! 🏪' },
+
+    // WHATSAPP E MARKETING (116-130)
+    { keywords: ['whatsapp', 'zap', 'mensagem'], 
+      answer: 'WhatsApp multi-tenant completo! Envio em massa, campanhas personalizadas, templates com variáveis. Comunique-se melhor! 📱' },
+    { keywords: ['campanha whatsapp', 'marketing whatsapp'], 
+      answer: 'Campanhas automatizadas! Segmentação inteligente, agendamento, relatórios de entrega. Venda mais via WhatsApp! 🎯' },
+    { keywords: ['envio massa', 'disparo whatsapp'], 
+      answer: 'Envio em massa com personalização! Use {nome}, {organization_name}. Até 1000 mensagens por hora! ⚡' },
+    { keywords: ['template whatsapp', 'modelo mensagem'], 
+      answer: 'Templates personalizáveis! Crie modelos com variáveis, imagens. Padronize a comunicação! 📝' },
+    { keywords: ['relatório whatsapp', 'estatística envio'], 
+      answer: 'Relatórios completos de envio! Taxa de entrega, leitura, cliques. Otimize suas campanhas! 📊' },
+    { keywords: ['conexão whatsapp', 'qr code'], 
+      answer: 'Conexão via QR Code! Conecte seu número em 2 minutos. Status em tempo real, reconexão automática! 📱' },
+    { keywords: ['multi-tenant whatsapp', 'empresas whatsapp'], 
+      answer: 'WhatsApp multi-tenant! Cada empresa com seu número, isolamento total. Ideal para operações multi-empresa! 🏢' },
+    { keywords: ['segmentação whatsapp', 'filtro clientes'], 
+      answer: 'Segmentação avançada! Por comportamento, compras, localização. Envie a mensagem certa para cada cliente! 🎯' },
+    { keywords: ['agendamento whatsapp', 'envio programado'], 
+      answer: 'Agende envios! Defina data e hora. Envie no melhor momento para cada segmento. Automação completa! ⏰' },
+    { keywords: ['imagem whatsapp', 'envio foto'], 
+      answer: 'Envie imagens! Catálogos, produtos, promoções. Aumente o engajamento com conteúdo visual! 🖼️' },
+    { keywords: ['resposta automática', 'bot whatsapp'], 
+      answer: 'Respostas automáticas! Configure para horários fora do expediente. Nunca perca uma oportunidade! 🤖' },
+    { keywords: ['lista transmissão', 'broadcast'], 
+      answer: 'Listas de transmissão organizadas! Crie grupos por interesse, produto. Comunicação direcionada! 📋' },
+    { keywords: ['taxa abertura', 'métricas whatsapp'], 
+      answer: 'Taxa de abertura de 89%! WhatsApp tem maior engajamento que email. Comunique-se onde seus clientes estão! 📈' },
+    { keywords: ['opt-in', 'permissão whatsapp'], 
+      answer: 'Respeite o opt-in! Clientes autorizam receber mensagens. Base limpa, alta entregabilidade. ✅' },
+    { keywords: ['bloqueio whatsapp', 'não receber'], 
+      answer: 'Controle de bloqueios! Identifique clientes que bloquearam, remova da lista. Mantenha base saudável! 🚫' },
+    // SEGURANÇA E DADOS (76-85)
+    { keywords: ['seguro', 'segurança', 'seguranca', 'dados seguros'], 
+      answer: 'Seus dados são 100% seguros! Usamos criptografia de ponta, servidores protegidos e fazemos backups automáticos diários. 🔒' },
+    { keywords: ['backup', 'cópia segurança', 'copia seguranca'], 
+      answer: 'Fazemos backups automáticos diários dos seus dados. Você também pode exportar seus dados a qualquer momento!' },
+    { keywords: ['lgpd', 'privacidade', 'dados pessoais'], 
+      answer: 'Somos 100% compatíveis com a LGPD! Seus dados e de seus clientes são tratados com total segurança e privacidade. ✅' },
+    { keywords: ['exportar dados', 'baixar dados', 'meus dados'], 
+      answer: 'Você pode exportar todos os seus dados a qualquer momento em formatos como Excel e CSV. Seus dados são seus!' },
+    { keywords: ['servidor', 'onde fica', 'hospedagem', 'cloud'], 
+      answer: 'Nossos servidores ficam no Brasil, em data centers de alta disponibilidade com 99.9% de uptime garantido! ☁️' },
+    { keywords: ['offline', 'sem internet', 'funciona offline'], 
+      answer: 'O PDV funciona offline! Você continua vendendo mesmo sem internet e sincroniza quando a conexão voltar. 📶' },
+
+    // ACESSO E DISPOSITIVOS (86-95)
+    { keywords: ['celular', 'mobile', 'smartphone', 'app'], 
+      answer: 'Sim! O sistema é responsivo e funciona perfeitamente no celular. Nos planos Professional+ temos app nativo! 📱' },
+    { keywords: ['tablet', 'ipad'], 
+      answer: 'Funciona perfeitamente em tablets! Muitos clientes usam como PDV móvel na loja. Interface otimizada!' },
+    { keywords: ['computador', 'pc', 'notebook', 'requisitos'], 
+      answer: 'Funciona em qualquer computador com navegador atualizado (Chrome, Firefox, Edge). Não precisa instalar nada!' },
+    { keywords: ['instalar', 'baixar programa', 'download'], 
+      answer: 'Não precisa instalar nada! O Smart Administrator é 100% online (na nuvem). Acesse de qualquer lugar pelo navegador. ☁️' },
+    { keywords: ['usuário', 'usuario', 'login', 'acesso'], 
+      answer: 'Cada usuário tem seu login individual com permissões personalizadas. Controle quem acessa o quê no sistema!' },
+    { keywords: ['permissão', 'permissao', 'restringir acesso', 'nível acesso'], 
+      answer: 'Configure permissões detalhadas: quem pode ver vendas, alterar preços, acessar financeiro, etc. Controle total! 🔐' },
+    { keywords: ['impressora', 'imprimir', 'cupom'], 
+      answer: 'Compatível com impressoras térmicas (cupom), jato de tinta e laser. Imprima cupons, relatórios e etiquetas!' },
+
+    // CANCELAMENTO E GARANTIA (96-100)
+    { keywords: ['cancelar', 'cancelamento', 'encerrar conta'], 
+      answer: 'Você pode cancelar a qualquer momento, direto pelo painel, sem burocracia. Não cobramos multa de cancelamento!' },
+    { keywords: ['garantia', 'dinheiro de volta', 'reembolso'], 
+      answer: 'Oferecemos **garantia de 30 dias**! Se não ficar satisfeito, devolvemos 100% do seu dinheiro. Sem perguntas! 💯' },
+    { keywords: ['arrependimento', 'não gostei', 'nao gostei'], 
+      answer: 'Sem problemas! Você tem 30 dias de garantia. Se não gostar, devolvemos seu dinheiro integralmente. Risco zero!' },
+    { keywords: ['pausar', 'suspender', 'férias', 'ferias'], 
+      answer: 'Você pode pausar sua assinatura por até 3 meses. Seus dados ficam guardados e você retoma quando quiser!' },
+    { keywords: ['renovação', 'renovacao', 'renovar', 'vencimento'], 
+      answer: 'A renovação é automática para sua comodidade. Você é avisado 7 dias antes e pode cancelar a qualquer momento!' }
+];
+
+// Respostas para quick replies
+const quickReplies = {
+    'precos': 'Temos 3 planos:\n\n💎 **Essencial**: R$ 300/mês\n- 2 usuários, PDV com cards, estoque\n\n🚀 **Profissional**: R$ 450/mês (mais popular!)\n- 5 usuários, financeiro, NFe, WhatsApp\n\n🏢 **Enterprise**: R$ 700/mês\n- Usuários ilimitados, IA completa, multi-tenant\n\n✨ Todos incluem 30 dias grátis!',
+    'teste': 'É muito fácil começar seu teste grátis! 🎁\n\n1. Clique em "Começar Teste Grátis"\n2. Preencha seus dados básicos\n3. Pronto! Acesso imediato\n\n✅ 30 dias grátis\n✅ Sem cartão de crédito\n✅ Todas as funcionalidades\n✅ Suporte incluído',
+    'funcionalidades': 'O Smart Administrator oferece tudo que você precisa! ⚡\n\n🛒 **Vendas/PDV** - Rápido e intuitivo\n📦 **Estoque** - Controle total\n💰 **Financeiro** - Contas a pagar/receber\n👥 **Clientes** - CRM completo\n📊 **Relatórios** - Dashboards visuais\n📄 **NF-e/NFC-e** - Emissão integrada\n⚡ **PIX** - Recebimento automático',
+    'suporte': 'Estamos aqui para ajudar! 🆘\n\n📱 **WhatsApp**: (62) 98156-1666\n💬 **Chat**: No próprio sistema\n📧 **Email**: suporte@smartadmin.com.br\n\n⏰ Horário: Seg-Sex, 8h às 18h\n\nPara urgências, temos plantão via WhatsApp!'
+};
+
+// WhatsApp number (configure here)
+const WHATSAPP_NUMBER = '5562981561666';
+
+// ===== CHATBOT CLASS =====
+class SmartChatbot {
+    constructor() {
+        this.messagesContainer = document.getElementById('chatbotMessages');
+        this.chatInput = document.getElementById('chatInput');
+        this.chatSend = document.getElementById('chatSend');
+        this.chatbotToggle = document.getElementById('chatbotToggle');
+        this.chatbotWindow = document.getElementById('chatbotWindow');
+        this.chatbotClose = document.getElementById('chatbotClose');
+        this.chatbotBadge = document.querySelector('.chatbot-badge');
+
+        this.init();
+    }
+
+    init() {
+        // Toggle chatbot window
+        this.chatbotToggle?.addEventListener('click', () => this.toggleChat());
+        this.chatbotClose?.addEventListener('click', () => this.closeChat());
+
+        // Send message
+        this.chatSend?.addEventListener('click', () => this.sendMessage());
+        this.chatInput?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') this.sendMessage();
+        });
+
+        // Quick replies
+        document.querySelectorAll('.quick-reply').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const question = btn.dataset.question;
+                this.handleQuickReply(question);
+            });
+        });
+
+        // Hide badge after opening
+        this.chatbotToggle?.addEventListener('click', () => {
+            if (this.chatbotBadge) this.chatbotBadge.style.display = 'none';
+        });
+    }
+
+    toggleChat() {
+        this.chatbotWindow?.classList.toggle('active');
+    }
+
+    closeChat() {
+        this.chatbotWindow?.classList.remove('active');
+    }
+
+    sendMessage() {
+        const message = this.chatInput?.value.trim();
+        if (!message) return;
+
+        // Add user message
+        this.addMessage(message, 'user');
+        this.chatInput.value = '';
+
+        // Show typing indicator
+        this.showTyping();
+
+        // Process and respond
+        setTimeout(() => {
+            this.removeTyping();
+            const response = this.findAnswer(message);
+            this.addMessage(response.answer, 'bot', response.showWhatsApp);
+        }, 1000 + Math.random() * 500);
+    }
+
+    handleQuickReply(question) {
+        const response = quickReplies[question];
+        if (response) {
+            // Remove quick replies
+            const quickRepliesEl = document.querySelector('.quick-replies');
+            if (quickRepliesEl) quickRepliesEl.remove();
+
+            // Add bot response
+            this.addMessage(response, 'bot');
+        }
+    }
+
+    findAnswer(question) {
+        const normalizedQuestion = question.toLowerCase()
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '');
+
+        let bestMatch = null;
+        let highestScore = 0;
+
+        for (const faq of faqDatabase) {
+            let score = 0;
+            for (const keyword of faq.keywords) {
+                const normalizedKeyword = keyword.toLowerCase()
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '');
+
+                if (normalizedQuestion.includes(normalizedKeyword)) {
+                    score += normalizedKeyword.length;
+                }
+            }
+
+            if (score > highestScore) {
+                highestScore = score;
+                bestMatch = faq;
+            }
+        }
+
+        // If good match found
+        if (bestMatch && highestScore >= 3) {
+            return { answer: bestMatch.answer, showWhatsApp: false };
+        }
+
+        // No match - suggest WhatsApp
+        return {
+            answer: 'Hmm, não encontrei uma resposta específica para sua pergunta. 🤔\n\nMas não se preocupe! Nossa equipe pode te ajudar melhor pelo WhatsApp.',
+            showWhatsApp: true
+        };
+    }
+
+    addMessage(content, type, showWhatsApp = false) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${type}`;
+
+        // Convert markdown-like formatting
+        let formattedContent = content
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\n/g, '<br>');
+
+        let html = `<div class="message-content"><p>${formattedContent}</p>`;
+
+        if (showWhatsApp) {
+            const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent('Olá! Tenho uma dúvida sobre o Smart Administrator: ' + (this.chatInput?.value || ''))}`;
+            html += `
+                <a href="${whatsappUrl}" target="_blank" rel="noopener" class="whatsapp-btn" style="
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    background: #25d366;
+                    color: white;
+                    padding: 10px 16px;
+                    border-radius: 8px;
+                    margin-top: 12px;
+                    font-weight: 600;
+                    text-decoration: none;
+                ">
+                    <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+                </a>
+            `;
+        }
+
+        html += '</div>';
+        messageDiv.innerHTML = html;
+
+        this.messagesContainer?.appendChild(messageDiv);
+        this.scrollToBottom();
+    }
+
+    showTyping() {
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'message bot typing-indicator';
+        typingDiv.innerHTML = `
+            <div class="message-content">
+                <div class="typing-dots">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        `;
+        this.messagesContainer?.appendChild(typingDiv);
+        this.scrollToBottom();
+
+        // Add typing animation styles if not exists
+        if (!document.getElementById('typing-styles')) {
+            const style = document.createElement('style');
+            style.id = 'typing-styles';
+            style.textContent = `
+                .typing-dots {
+                    display: flex;
+                    gap: 4px;
+                    padding: 4px 0;
+                }
+                .typing-dots span {
+                    width: 8px;
+                    height: 8px;
+                    background: #94a3b8;
+                    border-radius: 50%;
+                    animation: typingBounce 1.4s infinite ease-in-out;
+                }
+                .typing-dots span:nth-child(1) { animation-delay: 0s; }
+                .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+                .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+                @keyframes typingBounce {
+                    0%, 80%, 100% { transform: translateY(0); }
+                    40% { transform: translateY(-6px); }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+    }
+
+    removeTyping() {
+        const typing = this.messagesContainer?.querySelector('.typing-indicator');
+        if (typing) typing.remove();
+    }
+
+    scrollToBottom() {
+        if (this.messagesContainer) {
+            this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
+        }
+    }
+}
+
+// ===== INIT CHATBOT =====
+document.addEventListener('DOMContentLoaded', () => {
+    new SmartChatbot();
+});
+// ===== COUNTDOWN TIMER =====
+function initCountdown() {
+    const countdownEl = document.getElementById('countdown');
+    if (!countdownEl) return;
+
+    // Set end date to 3 days from now
+    let endDate = localStorage.getItem('promoEndDate');
+    if (!endDate) {
+        endDate = new Date();
+        endDate.setDate(endDate.getDate() + 3);
+        localStorage.setItem('promoEndDate', endDate.toISOString());
+    } else {
+        endDate = new Date(endDate);
+    }
+
+    function updateCountdown() {
+        const now = new Date();
+        const diff = endDate - now;
+
+        if (diff <= 0) {
+            countdownEl.textContent = 'Oferta encerrada!';
+            return;
+        }
+
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        countdownEl.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+}
+
+// ===== HEADER SCROLL =====
+function initHeaderScroll() {
+    const header = document.querySelector('.header');
+    const urgencyBar = document.querySelector('.urgency-bar');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.style.top = '0';
+            header.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1)';
+        } else {
+            header.style.top = urgencyBar ? '44px' : '0';
+            header.style.boxShadow = '0 1px 2px 0 rgb(0 0 0 / 0.05)';
+        }
+    });
+}
+
+// ===== MOBILE MENU =====
+function initMobileMenu() {
+    const menuBtn = document.getElementById('mobileMenuBtn');
+    const navLinks = document.querySelector('.nav-links');
+    const navButtons = document.querySelector('.nav-buttons');
+
+    if (menuBtn) {
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            navButtons.classList.toggle('active');
+        });
+    }
+}
+
+// ===== SMOOTH SCROLL =====
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const urgencyHeight = document.querySelector('.urgency-bar')?.offsetHeight || 0;
+                const targetPosition = target.offsetTop - headerHeight - urgencyHeight + 20;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// ===== FEATURES TABS =====
+function initFeaturesTabs() {
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.feature-panel');
+
+    tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const tabId = btn.dataset.tab;
+
+            tabBtns.forEach(b => b.classList.remove('active'));
+            panels.forEach(p => p.classList.remove('active'));
+
+            btn.classList.add('active');
+            document.getElementById(tabId)?.classList.add('active');
+        });
+    });
+}
+
+// ===== PRICING TOGGLE =====
+function initPricingToggle() {
+    const toggle = document.getElementById('pricingToggle');
+    const amounts = document.querySelectorAll('.pricing-price .amount');
+    const labels = document.querySelectorAll('.toggle-label');
+
+    if (toggle) {
+        toggle.addEventListener('change', () => {
+            const isYearly = toggle.checked;
+
+            amounts.forEach(amount => {
+                const monthly = amount.dataset.monthly;
+                const yearly = amount.dataset.yearly;
+                amount.textContent = isYearly ? yearly : monthly;
+            });
+
+            labels[0].classList.toggle('active', !isYearly);
+            labels[1].classList.toggle('active', isYearly);
+        });
+    }
+}
+
+// ===== FAQ ACCORDION =====
+function initFaqAccordion() {
+    const faqItems = document.querySelectorAll('.faq-item');
+
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            // Close all
+            faqItems.forEach(i => i.classList.remove('active'));
+
+            // Open clicked if wasn't active
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+}
+
+// ===== SCROLL ANIMATIONS =====
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.benefit-card, .testimonial-card, .pricing-card, .faq-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+
+    // Add CSS for animation
+    const style = document.createElement('style');
+    style.textContent = `
+        .animate-in {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+    `;
+    document.head.appendChild(style);
+}
+
+// ===== OPEN CHAT FROM FAQ =====
+function initOpenChatFromFaq() {
+    const openChatBtn = document.getElementById('openChatFromFaq');
+    if (openChatBtn) {
+        openChatBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const chatWindow = document.getElementById('chatbotWindow');
+            if (chatWindow) {
+                chatWindow.classList.add('active');
+            }
+        });
+    }
+}
+
+// ===== INIT =====
+document.addEventListener('DOMContentLoaded', () => {
+    initCountdown();
+    initHeaderScroll();
+    initMobileMenu();
+    initSmoothScroll();
+    initFeaturesTabs();
+    initPricingToggle();
+    initFaqAccordion();
+    initScrollAnimations();
+    initOpenChatFromFaq();
+});
+</script></body></html>
