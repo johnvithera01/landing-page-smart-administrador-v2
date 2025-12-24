@@ -2290,7 +2290,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     <section class="hero">
         <div class="hero-content container">
             <div class="hero-text">
-                <span class="badge">✨ Novo: Integração com PIX automático</span>
+                <span class="badge">✨ Novo: Sistema de Auditoria Completo</span>
                 <h1>Transforme sua empresa com <span class="gradient-text">gestão inteligente</span></h1>
                 <p class="hero-description">O sistema completo que automatiza vendas, estoque, financeiro e muito mais. Economize até <strong>15 horas por semana</strong> e aumente seu faturamento em até <strong>40%</strong>.</p>
                 
@@ -2482,8 +2482,16 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
                         <i class="fas fa-plug"></i>
                     </div>
                     <h3>Integrações</h3>
-                    <p>Conecte com PIX, nota fiscal, marketplaces e muito mais de forma automática.</p>
-                    <span class="benefit-stat">50+ integrações</span>
+                    <p>WhatsApp integrado, importação de NFe via XML, emissão de documentos fiscais e exportação de relatórios.</p>
+                    <span class="benefit-stat">Integrações essenciais</span>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Rastreabilidade Total</h3>
+                    <p>Sistema de auditoria completo: saiba quem fez o quê, quando e como. Total transparência e controle.</p>
+                    <span class="benefit-stat">100% rastreável</span>
                 </div>
             </div>
         </div>
@@ -2560,8 +2568,8 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
             <div class="ai-features">
                 <div class="ai-feature">
                     <div class="ai-feature-icon"><i class="fas fa-magic"></i></div>
-                    <h4>Precificação Dinâmica</h4>
-                    <p>Ajusta preços automaticamente baseado em demanda, concorrência e margem desejada</p>
+                    <h4>Análise de Preços Inteligente</h4>
+                    <p>Análise de preços com IA e histórico de compras para definir margens e preços competitivos</p>
                 </div>
                 <div class="ai-feature">
                     <div class="ai-feature-icon"><i class="fas fa-bullseye"></i></div>
@@ -2749,6 +2757,9 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
                 <button class="tab-btn" data-tab="clientes">
                     <i class="fas fa-users"></i> CRM
                 </button>
+                <button class="tab-btn" data-tab="auditoria">
+                    <i class="fas fa-history"></i> Auditoria
+                </button>
             </div>
             <div class="features-content">
                 <div class="feature-panel active" id="vendas">
@@ -2853,6 +2864,29 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
                         <div class="feature-mockup">
                             <i class="fas fa-address-book"></i>
                             <span>CRM Smart</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-panel" id="auditoria">
+                    <div class="feature-info">
+                        <h3>Sistema de Auditoria Completo</h3>
+                        <p>Rastreabilidade total de todas as ações do sistema. Saiba quem fez o quê, quando e como.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> Registro automático de todas as ações</li>
+                            <li><i class="fas fa-check"></i> Identificação de usuário por ação</li>
+                            <li><i class="fas fa-check"></i> Histórico completo de alterações</li>
+                            <li><i class="fas fa-check"></i> Comparação de dados antes/depois</li>
+                            <li><i class="fas fa-check"></i> Filtros avançados por data, usuário, módulo</li>
+                            <li><i class="fas fa-check"></i> Exportação para Excel</li>
+                            <li><i class="fas fa-check"></i> Rastreamento de IP e contexto</li>
+                            <li><i class="fas fa-check"></i> Dashboard com estatísticas</li>
+                        </ul>
+                        <a href="http://165.227.18.14/demo" class="btn btn-primary" target="_blank" rel="noopener">Ver em ação</a>
+                    </div>
+                    <div class="feature-image">
+                        <div class="feature-mockup">
+                            <i class="fas fa-history"></i>
+                            <span>Auditoria Smart</span>
                         </div>
                     </div>
                 </div>
@@ -3006,6 +3040,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
                         <li><i class="fas fa-check"></i> Importação de NFe (XML)</li>
                         <li><i class="fas fa-check"></i> WhatsApp integrado</li>
                         <li><i class="fas fa-check"></i> Campanhas de marketing</li>
+                        <li><i class="fas fa-check"></i> Sistema de auditoria completo</li>
                         <li><i class="fas fa-check"></i> Suporte prioritário</li>
                         <li><i class="fas fa-check"></i> Relatórios PDF/Excel</li>
                     </ul>
@@ -3027,6 +3062,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
                         <li><i class="fas fa-check"></i> IA: Previsão de demanda</li>
                         <li><i class="fas fa-check"></i> IA: Análise de preços</li>
                         <li><i class="fas fa-check"></i> IA: Reengajamento</li>
+                        <li><i class="fas fa-check"></i> Auditoria avançada com IA</li>
                         <li><i class="fas fa-check"></i> Multi-tenant (filiais)</li>
                         <li><i class="fas fa-check"></i> Gerente de conta</li>
                         <li><i class="fas fa-check"></i> Treinamento incluso</li>
@@ -3323,7 +3359,7 @@ const faqDatabase = [
     { keywords: ['fracionado', 'granel', 'peso'], 
       answer: 'Venda fracionada para produtos a granel! Informe peso, sistema calcula preço automaticamente. Ideal para mercearias e lojas de produtos naturais! ⚖️' },
     { keywords: ['pagamento', 'formas pagamento', 'dinheiro', 'cartao', 'pix'], 
-      answer: 'Múltiplas formas: dinheiro, cartão (débito/crédito), PIX, boleto, crediário. Calcula troco automático para dinheiro! 💳' },
+      answer: 'Múltiplas formas: dinheiro, cartão (débito/crédito), boleto, crediário. Calcula troco automático para dinheiro! 💳' },
     { keywords: ['troco', 'calcular troco', 'dinheiro troco'], 
       answer: 'Cálculo automático de troco! Sistema informa valor exato. Evita erros e agiliza atendimento no caixa! 💰' },
     { keywords: ['desconto', 'dar desconto', 'percentual'], 
@@ -3387,7 +3423,7 @@ const faqDatabase = [
     { keywords: ['boleto', 'gerar boleto', 'cobrança'], 
       answer: 'Emissão de boletos automática! Gere nas vendas parceladas. Envie por email/WhatsApp. Controle de compensação! 🏦' },
     { keywords: ['pix', 'receber pix', 'pagar pix'], 
-      answer: 'Integração PIX completa! Gere QR Code para receber, pague fornecedores. Crédito automático na conta! ⚡' },
+      answer: 'Sistema de conciliação bancária! Importe extratos, compare com lançamentos e identifique divergências facilmente! 🏛️' },
     { keywords: ['conciliação', 'conciliar', 'bancária'], 
       answer: 'Conciliação bancária automática! Importe extrato, compare com lançamentos. Identifique divergências facilmente! 🏛️' },
     { keywords: ['crediário', 'parcelamento', 'financiar cliente'], 
@@ -3585,7 +3621,7 @@ const faqDatabase = [
 const quickReplies = {
     'precos': 'Temos 3 planos:\n\n💎 **Essencial**: R$ 300/mês\n- 2 usuários, PDV com cards, estoque\n\n🚀 **Profissional**: R$ 450/mês (mais popular!)\n- 5 usuários, financeiro, NFe, WhatsApp\n\n🏢 **Enterprise**: R$ 700/mês\n- Usuários ilimitados, IA completa, multi-tenant\n\n✨ Todos incluem 30 dias grátis!',
     'teste': 'É muito fácil começar seu teste grátis! 🎁\n\n1. Clique em "Começar Teste Grátis"\n2. Preencha seus dados básicos\n3. Pronto! Acesso imediato\n\n✅ 30 dias grátis\n✅ Sem cartão de crédito\n✅ Todas as funcionalidades\n✅ Suporte incluído',
-    'funcionalidades': 'O Smart Administrator oferece tudo que você precisa! ⚡\n\n🛒 **Vendas/PDV** - Rápido e intuitivo\n📦 **Estoque** - Controle total\n💰 **Financeiro** - Contas a pagar/receber\n👥 **Clientes** - CRM completo\n📊 **Relatórios** - Dashboards visuais\n📄 **NF-e/NFC-e** - Emissão integrada\n⚡ **PIX** - Recebimento automático',
+    'funcionalidades': 'O Smart Administrator oferece tudo que você precisa! ⚡\n\n🛒 **Vendas/PDV** - Rápido e intuitivo\n📦 **Estoque** - Controle total\n💰 **Financeiro** - Contas a pagar/receber\n👥 **Clientes** - CRM completo\n📊 **Relatórios** - Dashboards visuais\n📄 **NF-e/NFC-e** - Emissão integrada\n📱 **WhatsApp** - Marketing e comunicação\n📋 **Auditoria** - Rastreabilidade completa',
     'suporte': 'Estamos aqui para ajudar! 🆘\n\n📱 **WhatsApp**: (62) 98156-1666\n💬 **Chat**: No próprio sistema\n📧 **Email**: suporte@smartadmin.com.br\n\n⏰ Horário: Seg-Sex, 8h às 18h\n\nPara urgências, temos plantão via WhatsApp!'
 };
 
