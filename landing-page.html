@@ -198,6 +198,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     left: 0;
     right: 0;
     background: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     z-index: 1000;
     box-shadow: var(--shadow-sm);
@@ -2277,7 +2278,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
                 <li><a href="#planos">Planos</a></li>
             </ul>
             <div class="nav-buttons">
-                <a href="http://165.227.18.14/demo" class="btn btn-outline" target="_blank" rel="noopener">Ver Demo</a>
+                <a href="http://165.227.18.14:8000/demo" class="btn btn-outline" target="_blank" rel="noopener">Ver Demo</a>
                 <a href="#planos" class="btn btn-primary">Começar Agora</a>
             </div>
             <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu de navegação">
@@ -2290,9 +2291,9 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
     <section class="hero">
         <div class="hero-content container">
             <div class="hero-text">
-                <span class="badge">✨ Novo: Sistema de Auditoria Completo</span>
+                <span class="badge">✨ Novo: Integração E-commerce + Sistema de Auditoria</span>
                 <h1>Transforme sua empresa com <span class="gradient-text">gestão inteligente</span></h1>
-                <p class="hero-description">O sistema completo que automatiza vendas, estoque, financeiro e muito mais. Economize até <strong>15 horas por semana</strong> e aumente seu faturamento em até <strong>40%</strong>.</p>
+                <p class="hero-description">O sistema completo que automatiza vendas, estoque, financeiro, e-commerce e muito mais. Economize até <strong>15 horas por semana</strong> e aumente seu faturamento em até <strong>40%</strong>.</p>
                 
                 <div class="hero-stats">
                     <div class="stat">
@@ -2313,7 +2314,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
                     <a href="#planos" class="btn btn-primary btn-lg">
                         <i class="fas fa-rocket"></i> Começar Teste Grátis
                     </a>
-                    <a href="http://165.227.18.14/demo" class="btn btn-ghost btn-lg" target="_blank" rel="noopener">
+                    <a href="http://165.227.18.14:8000/demo" class="btn btn-ghost btn-lg" target="_blank" rel="noopener">
                         <i class="fas fa-play-circle"></i> Ver Demonstração
                     </a>
                 </div>
@@ -2482,7 +2483,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
                         <i class="fas fa-plug"></i>
                     </div>
                     <h3>Integrações</h3>
-                    <p>WhatsApp integrado, importação de NFe via XML, emissão de documentos fiscais e exportação de relatórios.</p>
+                    <p>WhatsApp integrado, API REST para e-commerce (WooCommerce, Shopify), importação de NFe via XML, emissão de documentos fiscais e exportação de relatórios.</p>
                     <span class="benefit-stat">Integrações essenciais</span>
                 </div>
                 <div class="benefit-card">
@@ -2733,6 +2734,141 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
         </div>
     </section>
 
+    <!-- Seção Integração E-commerce -->
+    <section class="ecommerce-section" id="integracao-ecommerce" style="padding: 100px 0; background: var(--white);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge"><i class="fas fa-shopping-bag"></i> Integração E-commerce</span>
+                <h2>Conecte sua <span class="gradient-text">loja online</span> ao sistema</h2>
+                <p>Sincronize pedidos de WooCommerce, Shopify, Nuvemshop e outras plataformas em tempo real</p>
+            </div>
+
+            <div class="whatsapp-showcase" style="margin-bottom: 60px;">
+                <div class="whatsapp-info">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 30px; color: var(--dark);">API REST Completa para Integração</h3>
+                    <ul class="whatsapp-features">
+                        <li>
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <div>
+                                <strong>API REST Completa</strong>
+                                <p>Integre facilmente com qualquer plataforma de e-commerce usando nossa API documentada</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <div>
+                                <strong>Sincronização Automática</strong>
+                                <p>Pedidos criados na sua loja online viram vendas oficiais no sistema automaticamente</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <div>
+                                <strong>Reserva de Estoque</strong>
+                                <p>Estoque é reservado automaticamente quando o pedido é recebido, evitando vendas duplicadas</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <div>
+                                <strong>Tracking Público</strong>
+                                <p>Clientes acompanham seus pedidos em tempo real através de link público de rastreamento</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <div>
+                                <strong>Webhooks Automáticos</strong>
+                                <p>Sistema notifica sua loja online sobre mudanças de status automaticamente</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle" style="color: var(--success);"></i>
+                            <div>
+                                <strong>Múltiplas Plataformas</strong>
+                                <p>Gerencie integrações com várias lojas simultaneamente, cada uma com sua API Key</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="whatsapp-stats" style="border-top: 1px solid var(--light);">
+                        <div class="ws-stat">
+                            <span class="ws-stat-value" style="color: var(--primary);">100%</span>
+                            <span class="ws-stat-label" style="color: var(--gray);">Automatizado</span>
+                        </div>
+                        <div class="ws-stat">
+                            <span class="ws-stat-value" style="color: var(--primary);">24/7</span>
+                            <span class="ws-stat-label" style="color: var(--gray);">Sincronização</span>
+                        </div>
+                        <div class="ws-stat">
+                            <span class="ws-stat-value" style="color: var(--primary);">0</span>
+                            <span class="ws-stat-label" style="color: var(--gray);">Erros de estoque</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="whatsapp-mockup">
+                    <div class="phone-frame" style="background: var(--light); border-radius: 20px; padding: 30px; max-width: 400px;">
+                        <div style="background: var(--white); border-radius: 15px; padding: 30px; box-shadow: var(--shadow-md);">
+                            <div style="text-align: center; margin-bottom: 30px;">
+                                <i class="fas fa-code" style="font-size: 3rem; color: var(--primary); margin-bottom: 15px; display: block;"></i>
+                                <h4 style="color: var(--dark); margin-bottom: 10px;">API REST</h4>
+                                <p style="color: var(--gray); font-size: 0.9rem;">Integração simples e segura</p>
+                            </div>
+                            <div style="background: var(--light); padding: 20px; border-radius: 10px; font-family: monospace; font-size: 0.85rem; color: var(--dark);">
+                                <div style="margin-bottom: 10px;"><span style="color: var(--primary);">POST</span> /api/integracoes/pedidos</div>
+                                <div style="margin-bottom: 10px;"><span style="color: var(--success);">GET</span> /api/integracoes/pedidos/{id}</div>
+                                <div><span style="color: var(--danger);">DELETE</span> /api/integracoes/pedidos/{id}</div>
+                            </div>
+                            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--light);">
+                                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                    <i class="fas fa-shield-alt" style="color: var(--success);"></i>
+                                    <span style="font-size: 0.9rem; color: var(--dark);">Autenticação via API Key</span>
+                                </div>
+                                <div style="display: flex; align-items: center; gap: 10px;">
+                                    <i class="fas fa-sync-alt" style="color: var(--primary);"></i>
+                                    <span style="font-size: 0.9rem; color: var(--dark);">Sincronização em tempo real</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="campaign-types" style="text-align: center;">
+                <h3 style="font-size: 1.5rem; margin-bottom: 40px; color: var(--dark);">Plataformas Suportadas</h3>
+                <div class="campaign-grid" style="grid-template-columns: repeat(4, 1fr);">
+                    <div class="campaign-card" style="background: var(--white); border: 1px solid var(--light);">
+                        <div class="campaign-icon" style="background: rgba(99, 102, 241, 0.1);">
+                            <i class="fab fa-wordpress" style="color: var(--primary);"></i>
+                        </div>
+                        <h4 style="color: var(--dark);">WooCommerce</h4>
+                        <p style="color: var(--gray);">WordPress</p>
+                    </div>
+                    <div class="campaign-card" style="background: var(--white); border: 1px solid var(--light);">
+                        <div class="campaign-icon" style="background: rgba(99, 102, 241, 0.1);">
+                            <i class="fas fa-store" style="color: var(--primary);"></i>
+                        </div>
+                        <h4 style="color: var(--dark);">Shopify</h4>
+                        <p style="color: var(--gray);">E-commerce</p>
+                    </div>
+                    <div class="campaign-card" style="background: var(--white); border: 1px solid var(--light);">
+                        <div class="campaign-icon" style="background: rgba(99, 102, 241, 0.1);">
+                            <i class="fas fa-cloud" style="color: var(--primary);"></i>
+                        </div>
+                        <h4 style="color: var(--dark);">Nuvemshop</h4>
+                        <p style="color: var(--gray);">Tray</p>
+                    </div>
+                    <div class="campaign-card" style="background: var(--white); border: 1px solid var(--light);">
+                        <div class="campaign-icon" style="background: rgba(99, 102, 241, 0.1);">
+                            <i class="fas fa-plug" style="color: var(--primary);"></i>
+                        </div>
+                        <h4 style="color: var(--dark);">Outras</h4>
+                        <p style="color: var(--gray);">Via API REST</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Funcionalidades -->
     <section class="features-section" id="funcionalidades">
         <div class="container">
@@ -2760,6 +2896,9 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
                 <button class="tab-btn" data-tab="auditoria">
                     <i class="fas fa-history"></i> Auditoria
                 </button>
+                <button class="tab-btn" data-tab="ecommerce">
+                    <i class="fas fa-shopping-bag"></i> E-commerce
+                </button>
             </div>
             <div class="features-content">
                 <div class="feature-panel active" id="vendas">
@@ -2774,7 +2913,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
                             <li><i class="fas fa-check"></i> Programa de fidelidade integrado</li>
                             <li><i class="fas fa-check"></i> Cálculo de margem em tempo real</li>
                         </ul>
-                        <a href="http://165.227.18.14/demo" class="btn btn-primary" target="_blank" rel="noopener">Ver em ação</a>
+                        <a href="http://165.227.18.14:8000/demo" class="btn btn-primary" target="_blank" rel="noopener">Ver em ação</a>
                     </div>
                     <div class="feature-image">
                         <div class="feature-mockup">
@@ -2795,7 +2934,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
                             <li><i class="fas fa-check"></i> Fracionamento configurável</li>
                             <li><i class="fas fa-check"></i> Histórico de movimentações</li>
                         </ul>
-                        <a href="http://165.227.18.14/demo" class="btn btn-primary" target="_blank" rel="noopener">Ver em ação</a>
+                        <a href="http://165.227.18.14:8000/demo" class="btn btn-primary" target="_blank" rel="noopener">Ver em ação</a>
                     </div>
                     <div class="feature-image">
                         <div class="feature-mockup">
@@ -2816,7 +2955,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
                             <li><i class="fas fa-check"></i> Geração de contas a pagar</li>
                             <li><i class="fas fa-check"></i> Análise de preços com IA</li>
                         </ul>
-                        <a href="http://165.227.18.14/demo" class="btn btn-primary" target="_blank" rel="noopener">Ver em ação</a>
+                        <a href="http://165.227.18.14:8000/demo" class="btn btn-primary" target="_blank" rel="noopener">Ver em ação</a>
                     </div>
                     <div class="feature-image">
                         <div class="feature-mockup">
@@ -2837,7 +2976,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
                             <li><i class="fas fa-check"></i> Meta de vendas por vendedor</li>
                             <li><i class="fas fa-check"></i> Dashboard financeiro</li>
                         </ul>
-                        <a href="http://165.227.18.14/demo" class="btn btn-primary" target="_blank" rel="noopener">Ver em ação</a>
+                        <a href="http://165.227.18.14:8000/demo" class="btn btn-primary" target="_blank" rel="noopener">Ver em ação</a>
                     </div>
                     <div class="feature-image">
                         <div class="feature-mockup">
@@ -2858,7 +2997,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
                             <li><i class="fas fa-check"></i> Envio de campanhas WhatsApp</li>
                             <li><i class="fas fa-check"></i> Reengajamento automático</li>
                         </ul>
-                        <a href="http://165.227.18.14/demo" class="btn btn-primary" target="_blank" rel="noopener">Ver em ação</a>
+                        <a href="http://165.227.18.14:8000/demo" class="btn btn-primary" target="_blank" rel="noopener">Ver em ação</a>
                     </div>
                     <div class="feature-image">
                         <div class="feature-mockup">
@@ -2881,12 +3020,35 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
                             <li><i class="fas fa-check"></i> Rastreamento de IP e contexto</li>
                             <li><i class="fas fa-check"></i> Dashboard com estatísticas</li>
                         </ul>
-                        <a href="http://165.227.18.14/demo" class="btn btn-primary" target="_blank" rel="noopener">Ver em ação</a>
+                        <a href="http://165.227.18.14:8000/demo" class="btn btn-primary" target="_blank" rel="noopener">Ver em ação</a>
                     </div>
                     <div class="feature-image">
                         <div class="feature-mockup">
                             <i class="fas fa-history"></i>
                             <span>Auditoria Smart</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-panel" id="ecommerce">
+                    <div class="feature-info">
+                        <h3>Integração Completa com E-commerce</h3>
+                        <p>Conecte sua loja online (WooCommerce, Shopify, Nuvemshop) e sincronize pedidos em tempo real.</p>
+                        <ul class="feature-list">
+                            <li><i class="fas fa-check"></i> API REST completa para integração</li>
+                            <li><i class="fas fa-check"></i> Autenticação segura via API Key</li>
+                            <li><i class="fas fa-check"></i> Sincronização automática de pedidos</li>
+                            <li><i class="fas fa-check"></i> Reserva automática de estoque</li>
+                            <li><i class="fas fa-check"></i> Tracking público para clientes</li>
+                            <li><i class="fas fa-check"></i> Webhooks para notificações de status</li>
+                            <li><i class="fas fa-check"></i> Gestão de múltiplas plataformas</li>
+                            <li><i class="fas fa-check"></i> Interface de teste de API</li>
+                        </ul>
+                        <a href="http://165.227.18.14:8000/demo" class="btn btn-primary" target="_blank" rel="noopener">Ver em ação</a>
+                    </div>
+                    <div class="feature-image">
+                        <div class="feature-mockup">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span>E-commerce Smart</span>
                         </div>
                     </div>
                 </div>
@@ -2994,7 +3156,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
             <div class="pricing-toggle">
                 <span class="toggle-label active">Mensal</span>
                 <label class="toggle-switch">
-                    <input type="checkbox" id="pricingToggle">
+                    <input type="checkbox" id="pricingToggle" aria-label="Alternar entre planos mensais e anuais">
                     <span class="toggle-slider"></span>
                 </label>
                 <span class="toggle-label">Anual <span class="discount-badge">-20%</span></span>
@@ -3041,6 +3203,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
                         <li><i class="fas fa-check"></i> WhatsApp integrado</li>
                         <li><i class="fas fa-check"></i> Campanhas de marketing</li>
                         <li><i class="fas fa-check"></i> Sistema de auditoria completo</li>
+                        <li><i class="fas fa-check"></i> Integração com e-commerce (API REST)</li>
                         <li><i class="fas fa-check"></i> Suporte prioritário</li>
                         <li><i class="fas fa-check"></i> Relatórios PDF/Excel</li>
                     </ul>
@@ -3063,6 +3226,7 @@ h3 { font-size: clamp(1.25rem, 2vw, 1.5rem); }
                         <li><i class="fas fa-check"></i> IA: Análise de preços</li>
                         <li><i class="fas fa-check"></i> IA: Reengajamento</li>
                         <li><i class="fas fa-check"></i> Auditoria avançada com IA</li>
+                        <li><i class="fas fa-check"></i> Integração e-commerce completa</li>
                         <li><i class="fas fa-check"></i> Multi-tenant (filiais)</li>
                         <li><i class="fas fa-check"></i> Gerente de conta</li>
                         <li><i class="fas fa-check"></i> Treinamento incluso</li>
