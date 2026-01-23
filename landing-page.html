@@ -2345,14 +2345,72 @@
 
         @media (max-width: 768px) {
 
-            .nav-links,
+            /* Menu Mobile - Escondido por padrão */
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 16px;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+                z-index: 1000;
+                gap: 0;
+                border-radius: 0 0 16px 16px;
+            }
+
+            .nav-links a {
+                padding: 14px 16px;
+                border-bottom: 1px solid var(--light);
+                width: 100%;
+                text-align: left;
+                font-size: 1rem;
+            }
+
+            .nav-links a:last-child {
+                border-bottom: none;
+            }
+
             .nav-buttons {
                 display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                padding: 16px;
+                padding-top: 260px;
+                /* Espaço para os links acima */
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+                z-index: 999;
+                gap: 10px;
+                border-radius: 0 0 16px 16px;
+            }
+
+            .nav-buttons .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* Estado ativo do menu mobile */
+            .nav-links.active {
+                display: flex !important;
+            }
+
+            .nav-buttons.active {
+                display: flex !important;
             }
 
             .mobile-menu-btn {
                 display: block;
+                z-index: 1001;
+                padding: 8px;
+                font-size: 1.3rem;
             }
+
 
             /* Urgency Bar Mobile Fix */
             .urgency-bar {
@@ -5610,12 +5668,40 @@
             const navButtons = document.querySelector('.nav-buttons');
 
             if (menuBtn) {
+                // Toggle menu ao clicar no botão
                 menuBtn.addEventListener('click', () => {
                     navLinks.classList.toggle('active');
                     navButtons.classList.toggle('active');
                 });
+
+                // Fechar menu ao clicar em um link de navegação
+                navLinks.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                        navButtons.classList.remove('active');
+                    });
+                });
+
+                // Fechar menu ao clicar em um botão de ação
+                navButtons.querySelectorAll('a').forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        navLinks.classList.remove('active');
+                        navButtons.classList.remove('active');
+                    });
+                });
+
+                // Fechar menu ao clicar fora dele
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('.nav-links') &&
+                        !e.target.closest('.nav-buttons') &&
+                        !e.target.closest('.mobile-menu-btn')) {
+                        navLinks.classList.remove('active');
+                        navButtons.classList.remove('active');
+                    }
+                });
             }
         }
+
 
         // ===== SMOOTH SCROLL =====
         function initSmoothScroll() {
