@@ -2162,6 +2162,107 @@
             font-weight: 600;
         }
 
+        /* ===== FISCAL SECTION ===== */
+        .fiscal-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
+            color: var(--white);
+        }
+
+        .conversion-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            color: var(--white);
+        }
+
+        .fiscal-section .section-badge,
+        .conversion-section .section-badge {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+        }
+
+        .fiscal-section .section-header h2,
+        .conversion-section .section-header h2 {
+            color: var(--white);
+        }
+
+        .fiscal-section .section-header p,
+        .conversion-section .section-header p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .fiscal-section .whatsapp-info h3,
+        .conversion-section .whatsapp-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--white);
+        }
+
+        .fiscal-section .whatsapp-features li i,
+        .conversion-section .whatsapp-features li i {
+            color: #fbbf24;
+        }
+
+        .fiscal-section .whatsapp-features li p,
+        .conversion-section .whatsapp-features li p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .fiscal-section .whatsapp-stats,
+        .conversion-section .whatsapp-stats {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .fiscal-section .ws-stat-value,
+        .conversion-section .ws-stat-value {
+            color: #fbbf24;
+        }
+
+        .fiscal-section .ws-stat-label,
+        .conversion-section .ws-stat-label {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .fiscal-mockup,
+        .conversion-mockup {
+            background: var(--light);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 400px;
+        }
+
+        .fiscal-mockup-inner,
+        .conversion-mockup-inner {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .conversion-example {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .conversion-example:last-of-type {
+            margin-bottom: 0;
+        }
+
+        .conversion-example-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .gradient-text-golden {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
             .hero-content {
@@ -2369,104 +2470,672 @@
             .roi-total-info {
                 text-align: center;
             }
+
+            /* AI Section mobile fixes */
+            .ai-section {
+                padding: 60px 0 !important;
+            }
+
+            .roi-calculator {
+                padding: 20px !important;
+                margin-bottom: 40px !important;
+            }
+
+            .roi-header h3 {
+                font-size: 1.2rem !important;
+            }
+
+            .roi-header p {
+                font-size: 0.85rem !important;
+            }
+
+            .roi-card {
+                padding: 20px !important;
+            }
+
+            .roi-card h4 {
+                font-size: 1rem !important;
+            }
+
+            .roi-card>p {
+                font-size: 0.8rem !important;
+            }
+
+            .roi-value {
+                font-size: 2rem !important;
+            }
+
+            .roi-total {
+                padding: 20px !important;
+            }
+
+            .roi-total-value {
+                font-size: 1.8rem !important;
+            }
+
+            .roi-total-icon {
+                width: 60px !important;
+                height: 60px !important;
+            }
+
+            .roi-total-icon i {
+                font-size: 1.8rem !important;
+            }
+
+            .ai-feature {
+                padding: 20px 15px !important;
+            }
+
+            .ai-feature h4 {
+                font-size: 0.95rem !important;
+            }
+
+            .ai-feature p {
+                font-size: 0.8rem !important;
+            }
+
+            .ai-feature-icon {
+                width: 50px !important;
+                height: 50px !important;
+            }
+
+            .ai-feature-icon i {
+                font-size: 1.2rem !important;
+            }
+
         }
 
         @media (max-width: 480px) {
+
+            /* ===== FIX GLOBAL PARA MOBILE ===== */
+            html,
+            body {
+                max-width: 100vw !important;
+                overflow-x: hidden !important;
+            }
+
+            * {
+                box-sizing: border-box !important;
+            }
+
             .urgency-bar {
-                font-size: 0.75rem;
-                padding: 10px 12px;
-                line-height: 1.4;
+                font-size: 0.68rem;
+                padding: 8px 12px;
+                line-height: 1.35;
+                text-align: center;
+                width: 100%;
             }
 
             .urgency-bar .countdown {
                 display: block;
-                margin: 6px auto 0;
+                margin: 5px auto 0;
                 width: fit-content;
             }
 
+            /* ===== HERO SECTION - MOBILE FIX AGRESSIVE ===== */
             .hero {
-                padding: 100px 0 40px;
-                overflow: hidden;
+                padding: 85px 0 25px;
+                overflow: visible !important;
+                width: 100vw !important;
+                max-width: 100vw !important;
+            }
+
+            .hero .container {
+                width: 100% !important;
+                max-width: calc(100vw - 24px) !important;
+                padding: 0 12px !important;
+                margin: 0 auto !important;
+            }
+
+            .hero-content {
+                overflow: visible !important;
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 20px !important;
+                width: 100% !important;
+                max-width: 100% !important;
             }
 
             .hero-text {
-                padding: 0 4px;
+                padding: 0 !important;
+                overflow: visible !important;
+                text-align: center !important;
+                width: 100% !important;
+                max-width: 100% !important;
             }
 
             h1 {
-                font-size: 1.4rem;
-                line-height: 1.35;
-                margin-bottom: 12px;
-                padding-right: 60px;
+                font-size: 1.35rem !important;
+                line-height: 1.3 !important;
+                margin-bottom: 10px !important;
+                padding: 0 !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                word-break: break-word !important;
+                text-align: center !important;
+                width: 100% !important;
+                max-width: 100% !important;
             }
 
             .badge {
-                font-size: 0.75rem;
-                padding: 6px 12px;
-                margin-bottom: 16px;
+                font-size: 0.62rem !important;
+                padding: 5px 8px !important;
+                margin-bottom: 12px !important;
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                white-space: normal !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                word-break: break-word !important;
+                text-align: center !important;
+                line-height: 1.35 !important;
             }
 
             .hero-description {
-                font-size: 0.9rem;
-                margin: 12px 0;
-                line-height: 1.5;
-                padding-right: 60px;
+                font-size: 0.82rem !important;
+                margin: 10px 0 !important;
+                line-height: 1.45 !important;
+                padding: 0 !important;
+                text-align: center !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                word-wrap: break-word !important;
+                overflow-wrap: break-word !important;
+                word-break: break-word !important;
             }
 
             .hero-stats {
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 12px;
-                justify-content: center;
-                padding-right: 50px;
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                gap: 6px !important;
+                justify-content: center !important;
+                padding: 0 !important;
+                margin: 16px 0 !important;
+                width: 100% !important;
             }
 
             .stat {
-                flex: 0 0 calc(33.333% - 12px);
-                min-width: 80px;
+                flex: 1 !important;
+                min-width: 0 !important;
+                text-align: center !important;
             }
 
             .hero-cta {
-                flex-direction: column;
-                width: 100%;
+                flex-direction: column !important;
+                width: calc(100% - 70px) !important;
+                padding: 0 !important;
+                gap: 10px !important;
+                margin: 0 !important;
             }
 
             .hero-cta .btn {
-                width: 100%;
-                text-align: center;
-                font-size: 0.9rem;
-                padding: 12px 20px;
+                width: 100% !important;
+                text-align: center !important;
+                font-size: 0.85rem !important;
+                padding: 12px 16px !important;
             }
 
             .stat-number {
-                font-size: 1.25rem;
+                font-size: 1.15rem !important;
             }
 
             .stat-label {
-                font-size: 0.75rem;
+                font-size: 0.68rem !important;
             }
 
             .container {
-                padding: 0 16px;
+                padding: 0 12px !important;
+                max-width: calc(100vw - 24px) !important;
+                overflow: visible !important;
             }
 
             .hero-image {
-                transform: scale(0.78) !important;
-                transform-origin: top center;
-                margin-bottom: -50px;
+                transform: scale(0.72) !important;
+                transform-origin: top center !important;
+                margin-bottom: -70px !important;
+                width: 100% !important;
+                max-width: 100% !important;
             }
 
             .dashboard-preview {
                 transform: none !important;
             }
 
+            /* Trust badges - layout em coluna em mobile */
+            .trust-badges {
+                flex-direction: column !important;
+                gap: 5px !important;
+                align-items: center !important;
+                margin-top: 14px !important;
+            }
+
+            .trust-badges span {
+                font-size: 0.72rem !important;
+            }
+
+
+            /* Floating buttons - posição ajustada */
+            .chatbot-container {
+                bottom: 75px !important;
+                right: 12px !important;
+                z-index: 999;
+            }
+
+            .chatbot-toggle {
+                width: 48px;
+                height: 48px;
+                font-size: 1.1rem;
+            }
+
+            .whatsapp-float {
+                bottom: 12px !important;
+                right: 12px !important;
+                width: 48px;
+                height: 48px;
+                font-size: 1.4rem;
+                z-index: 999;
+            }
+
             .features-tabs {
-                flex-direction: column;
+                flex-direction: row;
                 align-items: stretch;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                gap: 6px;
+                padding-bottom: 10px;
+            }
+
+            .features-tabs::-webkit-scrollbar {
+                display: none;
             }
 
             .tab-btn {
                 justify-content: center;
+                white-space: nowrap;
+                font-size: 0.7rem;
+                padding: 8px 10px;
+                min-width: auto;
+            }
+
+            .tab-btn i {
+                font-size: 0.85rem;
+            }
+
+
+            /* ===== NOVAS SEÇÕES - MOBILE FIRST ===== */
+
+            /* Fiscal Section Mobile */
+            .fiscal-section,
+            .conversion-section {
+                padding: 60px 0 !important;
+            }
+
+            .fiscal-section .section-header h2,
+            .conversion-section .section-header h2 {
+                font-size: 1.4rem !important;
+                line-height: 1.4 !important;
+            }
+
+            .fiscal-section .section-header p,
+            .conversion-section .section-header p {
+                font-size: 0.9rem !important;
+            }
+
+            .fiscal-section .whatsapp-showcase,
+            .conversion-section .whatsapp-showcase {
+                margin-bottom: 30px !important;
+            }
+
+            .fiscal-section .whatsapp-info h3,
+            .conversion-section .whatsapp-info h3 {
+                font-size: 1.3rem !important;
+                margin-bottom: 20px !important;
+            }
+
+            .fiscal-section .whatsapp-features li,
+            .conversion-section .whatsapp-features li {
+                flex-direction: column !important;
+                text-align: center !important;
+                gap: 10px !important;
+            }
+
+            .fiscal-section .whatsapp-features li i,
+            .conversion-section .whatsapp-features li i {
+                font-size: 1.2rem !important;
+            }
+
+            .fiscal-section .whatsapp-features li strong,
+            .conversion-section .whatsapp-features li strong {
+                font-size: 1rem !important;
+            }
+
+            .fiscal-section .whatsapp-features li p,
+            .conversion-section .whatsapp-features li p {
+                font-size: 0.85rem !important;
+            }
+
+            .fiscal-section .ws-stat,
+            .conversion-section .ws-stat {
+                text-align: center !important;
+            }
+
+            .fiscal-section .ws-stat-value,
+            .conversion-section .ws-stat-value {
+                font-size: 2rem !important;
+            }
+
+            .fiscal-section .ws-stat-label,
+            .conversion-section .ws-stat-label {
+                font-size: 0.8rem !important;
+            }
+
+            .fiscal-section .whatsapp-mockup .phone-frame,
+            .conversion-section .whatsapp-mockup .phone-frame {
+                padding: 15px !important;
+                max-width: 100% !important;
+            }
+
+            .fiscal-section .whatsapp-mockup .phone-frame>div,
+            .conversion-section .whatsapp-mockup .phone-frame>div {
+                padding: 15px !important;
+            }
+
+            /* Ecommerce section mobile fixes */
+            .ecommerce-section .whatsapp-info h3 {
+                font-size: 1.3rem !important;
+            }
+
+            .ecommerce-section {
+                padding: 60px 0 !important;
+            }
+
+            .ecommerce-section .campaign-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 15px !important;
+            }
+
+            .ecommerce-section .campaign-card {
+                padding: 15px !important;
+            }
+
+            .ecommerce-section .campaign-card h4 {
+                font-size: 0.85rem !important;
+            }
+
+            .ecommerce-section .campaign-card p {
+                font-size: 0.75rem !important;
+            }
+
+            .ecommerce-section .campaign-icon {
+                width: 40px !important;
+                height: 40px !important;
+            }
+
+            .ecommerce-section .campaign-icon i {
+                font-size: 1rem !important;
+            }
+
+            .ecommerce-section .campaign-types h3 {
+                font-size: 1.2rem !important;
+                margin-bottom: 25px !important;
+            }
+
+            /* API mockup mobile */
+            .ecommerce-section .phone-frame {
+                padding: 15px !important;
+            }
+
+            .ecommerce-section .phone-frame>div {
+                padding: 15px !important;
+            }
+
+            /* WhatsApp section mobile fixes */
+            .whatsapp-section {
+                padding: 60px 0 !important;
+            }
+
+            .whatsapp-section .campaign-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
+            }
+
+            .whatsapp-section .campaign-card {
+                padding: 15px 10px !important;
+            }
+
+            .whatsapp-section .campaign-card h4 {
+                font-size: 0.8rem !important;
+            }
+
+            .whatsapp-section .campaign-card p {
+                font-size: 0.7rem !important;
+                margin-bottom: 8px !important;
+            }
+
+            .whatsapp-section .campaign-icon {
+                width: 40px !important;
+                height: 40px !important;
+                margin-bottom: 8px !important;
+            }
+
+            .whatsapp-section .campaign-types h3 {
+                font-size: 1.2rem !important;
+                margin-bottom: 25px !important;
+            }
+
+            /* Phone mockup mobile */
+            .phone-frame {
+                max-width: 280px !important;
+                margin: 0 auto;
+            }
+
+            /* Features tabs mobile - scroll horizontal */
+            .features-tabs {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+                padding-bottom: 10px;
+            }
+
+            .features-tabs::-webkit-scrollbar {
+                display: none;
+            }
+
+            .tab-btn {
+                font-size: 0.8rem !important;
+                padding: 10px 16px !important;
+                white-space: nowrap;
+            }
+
+            .tab-btn i {
+                font-size: 1rem !important;
+            }
+
+            /* Feature panel mobile */
+            .feature-panel {
+                padding: 20px !important;
+            }
+
+            .feature-info h3 {
+                font-size: 1.2rem !important;
+            }
+
+            .feature-info>p {
+                font-size: 0.9rem !important;
+            }
+
+            .feature-list li {
+                font-size: 0.85rem !important;
+            }
+
+            .feature-mockup {
+                padding: 40px !important;
+            }
+
+            .feature-mockup i {
+                font-size: 3rem !important;
+            }
+
+            .feature-mockup span {
+                font-size: 1.1rem !important;
+            }
+        }
+
+        /* ===== EXTRA SMALL DEVICES (320px) ===== */
+        @media (max-width: 360px) {
+
+            .fiscal-section .section-header h2,
+            .conversion-section .section-header h2 {
+                font-size: 1.2rem !important;
+            }
+
+            .fiscal-section .whatsapp-info h3,
+            .conversion-section .whatsapp-info h3 {
+                font-size: 1.1rem !important;
+            }
+
+            .tab-btn {
+                font-size: 0.7rem !important;
+                padding: 8px 12px !important;
+            }
+
+            h1 {
+                font-size: 1.2rem !important;
+                padding-right: 0 !important;
+            }
+
+            .hero-description {
+                padding-right: 0 !important;
+            }
+
+            .hero-stats {
+                padding-right: 0 !important;
+            }
+
+            .badge {
+                font-size: 0.65rem !important;
+            }
+
+            /* Seções Fiscal e Conversão - Extra small */
+            .fiscal-section,
+            .conversion-section {
+                padding: 40px 0 !important;
+            }
+
+            .fiscal-section .whatsapp-showcase,
+            .conversion-section .whatsapp-showcase {
+                margin-bottom: 20px !important;
+            }
+
+            /* Conversion examples mobile */
+            .conversion-section .phone-frame div[style*="display: flex"] {
+                flex-direction: column !important;
+                gap: 8px !important;
+            }
+
+            /* ROI extra small */
+            .roi-value {
+                font-size: 1.5rem !important;
+            }
+
+            .roi-total-value {
+                font-size: 1.4rem !important;
+            }
+
+            /* Campaign grid - 1 column on very small */
+            .campaign-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* Benefits section mobile */
+            .benefits-section {
+                padding: 60px 0 !important;
+            }
+
+            .benefit-card {
+                padding: 20px !important;
+            }
+
+            .benefit-icon {
+                width: 50px !important;
+                height: 50px !important;
+            }
+
+            .benefit-icon i {
+                font-size: 1.2rem !important;
+            }
+
+            .benefit-stat {
+                font-size: 0.75rem !important;
+            }
+
+            /* Problem/Solution cards mobile */
+            .problem-section {
+                padding: 60px 0 !important;
+            }
+
+            .problem-card,
+            .solution-card {
+                padding: 25px !important;
+            }
+
+            /* Pricing section mobile */
+            .pricing-section {
+                padding: 60px 0 !important;
+            }
+
+            .pricing-card {
+                padding: 25px !important;
+            }
+
+            .pricing-price .amount {
+                font-size: 2.5rem !important;
+            }
+
+            /* Testimonials mobile */
+            .testimonials-section {
+                padding: 60px 0 !important;
+            }
+
+            .testimonials-stats {
+                gap: 20px !important;
+                padding: 25px !important;
+            }
+
+            .t-stat-number {
+                font-size: 1.8rem !important;
+            }
+
+            /* FAQ mobile */
+            .faq-section {
+                padding: 60px 0 !important;
+            }
+
+            .faq-question {
+                font-size: 0.95rem !important;
+                padding: 15px 0 !important;
+            }
+
+            /* CTA mobile */
+            .final-cta {
+                padding: 60px 0 !important;
+            }
+
+            .cta-content h2 {
+                font-size: 1.4rem !important;
+            }
+
+            .cta-content>p {
+                font-size: 1rem !important;
+            }
+
+            /* Footer mobile */
+            .footer {
+                padding: 50px 0 20px !important;
             }
         }
     </style>
@@ -3109,18 +3778,14 @@
     </section>
 
     <!-- Seção Sistema Fiscal NFC-e/NF-e -->
-    <section class="fiscal-section" id="sistema-fiscal"
-        style="padding: 100px 0; background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%); color: var(--white);">
+    <section class="fiscal-section" id="sistema-fiscal">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge" style="background: rgba(255, 255, 255, 0.2); color: var(--white);"><i
-                        class="fas fa-receipt"></i> Emissão Fiscal</span>
-                <h2 style="color: var(--white);">Emita <span class="gradient-text"
-                        style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">NFC-e
-                        e NF-e</span> direto do sistema</h2>
-                <p style="color: rgba(255, 255, 255, 0.8);">Cupom fiscal eletrônico (NFC-e) para vendas no balcão e nota
-                    fiscal eletrônica (NF-e) completa</p>
+                <span class="section-badge"><i class="fas fa-receipt"></i> Emissão Fiscal</span>
+                <h2>Emita <span class="gradient-text-golden">NFC-e e NF-e</span> direto do sistema</h2>
+                <p>Cupom fiscal eletrônico (NFC-e) para vendas no balcão e nota fiscal eletrônica (NF-e) completa</p>
             </div>
+
 
             <div class="whatsapp-showcase" style="margin-bottom: 60px;">
                 <div class="whatsapp-info">
@@ -3215,20 +3880,15 @@
     </section>
 
     <!-- Seção Sistema de Conversão de Produtos -->
-    <section class="conversion-section" id="conversao-produtos"
-        style="padding: 100px 0; background: linear-gradient(135deg, #059669 0%, #047857 100%); color: var(--white);">
+    <section class="conversion-section" id="conversao-produtos">
         <div class="container">
             <div class="section-header">
-                <span class="section-badge" style="background: rgba(255, 255, 255, 0.2); color: var(--white);"><i
-                        class="fas fa-balance-scale"></i> Conversão Inteligente</span>
-                <h2 style="color: var(--white);">Compre por <span class="gradient-text"
-                        style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">saco</span>,
-                    venda por <span class="gradient-text"
-                        style="background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">kg</span>
-                </h2>
-                <p style="color: rgba(255, 255, 255, 0.8);">Flexibilidade total: compre em embalagens de atacado e venda
-                    em unidades de varejo</p>
+                <span class="section-badge"><i class="fas fa-balance-scale"></i> Conversão Inteligente</span>
+                <h2>Compre por <span class="gradient-text-golden">saco</span>, venda por <span
+                        class="gradient-text-golden">kg</span></h2>
+                <p>Flexibilidade total: compre em embalagens de atacado e venda em unidades de varejo</p>
             </div>
+
 
             <div class="whatsapp-showcase" style="margin-bottom: 60px;">
                 <div class="whatsapp-info">
